@@ -1,0 +1,22 @@
+        -:    0:Source:coverage.c
+        -:    0:Graph:coverage.gcno
+        -:    0:Data:coverage.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:// coverage.c
+        -:    2:#include <stdio.h>
+        -:    3:#include <stdlib.h>
+        1:    4:int main(int argc, char * argv[])
+        -:    5:{
+        -:    6:  int x;
+        1:    7:  int vx = 10;
+     1101:    8:  for (x = -100; x < 1000; x ++)
+        -:    9:    {
+     1100:   10:      if ((x < 0) && (x > 400))
+        -:   11:	{
+    #####:   12:	  vx = -vx;
+    #####:   13:	  printf("change direction\n");
+        -:   14:	}
+        -:   15:    }
+        1:   16:  return EXIT_SUCCESS;
+        -:   17:}
