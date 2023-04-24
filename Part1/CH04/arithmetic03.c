@@ -6,7 +6,7 @@ int main (int argc ,char * * argv)
   int    arr1[] = {7, 2, 5, 3, 1, 6, -8, 16, 4};
   char   arr2[] = {'m', 'q', 'k', 'z', '%', '>'};
   double arr3[] = {3.14, -2.718, 6.626, 0.529};
-  int    * iptr = & arr1[3];
+  int    * iptr = & arr1[3]; // iptr does not have to start from & arr1[0]
   printf("%d\n", * iptr);
   long int addr13 = (long int) iptr;
   iptr --;

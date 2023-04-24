@@ -15,6 +15,7 @@ int main (int argc ,char * * argv)
   t = -96;
   printf ("before swap2: u = %d , t = %d \n" , u , t);
   swap2 (& u , & t);
+  // RL
   printf ("after  swap2: u = %d , t = %d \n" , u , t);
   return EXIT_SUCCESS;
 }
