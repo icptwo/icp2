@@ -8,7 +8,7 @@
 GCC = gcc
 CFLAGS = -g -Wall -Wshadow
 SRCS = aredistinct.c main.c
-OBJS = $(SRCS:%.c = %.o) # OBJS = aredistinct.o main.o
+OBJS = $(SRCS:%.c=%.o) # OBJS = aredistinct.o main.o
 
 program: $(OBJS)
 	$(GCC) $(CFLAGS) $(OBJS) -o program # link, no -c
@@ -24,4 +24,4 @@ test: program
 	done
 
 clean:
-	/bin/rm -f *.o program *~ output*  
+	/bin/rm -f *.o program *~ *bak output*  
