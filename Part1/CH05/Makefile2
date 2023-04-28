@@ -1,9 +1,12 @@
-# Makefile for gcov
-GCC = gcc -g -Wall -Wshadow -fprofile-arcs -ftest-coverage
-cov: coverage.c
-	$(GCC) coverage.c -o cov
-	./cov
-	gcov coverage.c
-	grep "##" coverage.c.gcov
+# CH05:Makefile2
+
+GCC = gcc
+CFLAGS = -g -Wall -Wshadow
+FLAGS2 = -fsanitize=address -static-libasan
+
+wrongindex: wrongindex.c
+	$(GCC) $(CFLAGS) $(FLAGS2) wrongindex.c -o wrongindex
+	./wrongindex
+
 clean:
-	rm -f *.gcov *.gcno cov
+	/bin/rm -f *.o wrongindex *~ *bak output*  
