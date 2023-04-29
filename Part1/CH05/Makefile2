@@ -2,7 +2,7 @@
 
 GCC = gcc
 CFLAGS = -g -Wall -Wshadow
-FLAGS2 = -fsanitize=address -static-libasan
+CFLAGS += -fsanitize=address -static-libasan
 
 wrongindex: wrongindex.c
 	$(GCC) $(CFLAGS) $(FLAGS2) wrongindex.c -o wrongindex

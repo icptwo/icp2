@@ -12,8 +12,8 @@ int main(int argc, char * argv[])
   else
     { printf("argv[1] is an odd number\n"); }
   if ((y % 2) == 0)
-    { printf("argv[1] is an even number\n"); }
+    { printf("argv[2] is an even number\n"); }
   else
-    { printf("argv[1] is an odd number\n"); }
+    { printf("argv[2] is an odd number\n"); }
   return EXIT_SUCCESS;
 }
