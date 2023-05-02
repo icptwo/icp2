@@ -18,7 +18,7 @@ int main(int argc, char * argv[])
       return EXIT_FAILURE;
     }
   printf("The name of the file is %s.\n", argv[1]);
-  while (fscanf(fptr, "%d", & val) == 1)
+  while (fscanf(fptr, "%d", & val) == 1) // %d means integer
     {
       printf("%d ", val);
       sum += val;
