@@ -1,4 +1,4 @@
-// partition.c
+// CH14:partition.c
 // implement the recursive relation for calculating 
 // the number of partitions for a positive integer
 #include <stdio.h>
@@ -9,7 +9,8 @@ int f(int n)
   int sum = 0;
   if (n == 1) { return 1; } //Base case: only one way to partition 1
   // Recursive case 
-  for (i = 1; i < n; i ++) { sum += f(n - i); }
+  for (i = 1; i < n; i ++)
+    { sum += f(n - i); }
   sum ++;
   return sum;
 }
