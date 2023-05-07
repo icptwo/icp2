@@ -1,17 +1,15 @@
-// CH17:vectorarg2.c
+// CH17:vectorptr.c
 #include <stdio.h>
 #include <stdlib.h>
 #include "vector.h"
 void printVector(Vector v)
+{ printf("The vector is (%d, %d, %d).\n", v.x, v.y, v.z); }
+void changeVector(Vector * p)
 {
-  printf("The vector is (%d, %d, %d).\n", v.x, v.y, v.z);
-}
-void changeVector(Vector v)
-{
-  v.x = 5;
-  v.y = -3;
-  v.z = 7;
-  printVector(v);
+  p -> x = 5;
+  p -> y = -3;
+  p -> z = 7;
+  printVector(* p); // need to add * before p
 }
 int main(int argc, char * argv[])
 {
@@ -20,7 +18,7 @@ int main(int argc, char * argv[])
   v1.y = 6;
   v1.z = -2;
   printVector(v1);
-  changeVector(v1);
+  changeVector(& v1); // address of v1
   printVector(v1);
   return EXIT_SUCCESS;
 }

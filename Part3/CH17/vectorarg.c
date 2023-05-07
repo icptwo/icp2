@@ -1,7 +1,6 @@
 // CH17:vectorarg.c
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 #include "vector.h"
 void printVector(Vector v)
 {
