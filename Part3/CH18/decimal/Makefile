@@ -1,3 +1,4 @@
+# CH18:decimal/Makefile
 GCC = gcc
 CFLAGS = -g -Wall -Wshadow 
 VALGRIND = valgrind --tool=memcheck --verbose --log-file
@@ -8,4 +9,3 @@ decpack: decpack.c decpack.h main.c
 
 clean:
 	/bin/rm -f *.o decpack *log
-

@@ -1,4 +1,4 @@
-// decpack.c
+// CH18:decimal/decpack.c
 # include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
@@ -38,7 +38,8 @@ void DecPack_insert(DecPack * dp, int val)
   int used = dp -> used;
   if (used == dp -> size) 
     {
-      unsigned char * newdata = malloc(sizeof(unsigned char) * (dp -> size));
+      unsigned char * newdata = malloc(sizeof(unsigned char) *
+				       (dp -> size));
       int iter;
       for (iter = 0; iter < used; iter ++)
 	{ newdata[iter / 2] = dp -> data[iter / 2]; }
@@ -93,7 +94,8 @@ void DecPack_print(DecPack * dp)
   // go through every value stored in the data attribute
   for (iter = 0; iter < used; iter ++)
     {
-      if ((iter % 2) == 0) { printf("%d", (dp-> data[iter / 2] >> 4));}
+      if ((iter % 2) == 0)
+	{ printf("%d", (dp-> data[iter / 2] >> 4));}
       else { printf("%d", (dp-> data[iter / 2] & 0X0F)); }	
     }
   printf("\n");

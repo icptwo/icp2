@@ -29,7 +29,8 @@ int main(int argc, char **argv)
   if (fwrite(& (aptr1 -> length), sizeof(int), 1, fptr) != 1)
     { return EXIT_FAILURE; } // fwrite fail
   // write the data
-  if (fwrite((aptr1 -> data), sizeof(int), length, fptr) != length)
+  if (fwrite((aptr1 -> data), sizeof(int), length, fptr) !=
+      length)
     { return EXIT_FAILURE; } // fwrite fail
   printf("ftell(fptr) = %d\n", (int) ftell(fptr));
   fclose (fptr);
@@ -43,7 +44,8 @@ int main(int argc, char **argv)
   if (fread(& (aptr2 -> length), sizeof(int), 1, fptr) != 1)
     { return EXIT_FAILURE; }
   aptr2 -> data = malloc(sizeof(int) * (aptr2 -> length));  
-  if (fread((aptr2 -> data), sizeof(int), aptr2 -> length, fptr) != length)
+  if (fread((aptr2 -> data), sizeof(int), aptr2 -> length, fptr) !=
+      length)
     { return EXIT_FAILURE; } 
   int sum = 0;
   for (ind = 0; ind < (aptr2 -> length); ind ++)

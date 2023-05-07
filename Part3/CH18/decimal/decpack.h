@@ -1,4 +1,4 @@
-// decpack.h
+// CH18:decimal/decpack.h
 #ifndef DECPACK_H
 #define DECPACK_H
 typedef struct

@@ -15,7 +15,7 @@ int main(int argc, char **argv)
   char * filename = "data";
   Array * aptr1 = NULL;
   printf("sizeof(aptr1) = %d\n", (int) sizeof(aptr1));
-  aptr1 = malloc(sizeof(Array));
+  aptr1 = malloc(sizeof(Array)); // need to allocate Array first
   printf("sizeof(aptr1) = %d, sizeof(Array) = %d\n", 
 	 (int) sizeof(aptr1), (int) sizeof(Array));
   // allocate memory for the data
@@ -27,6 +27,10 @@ int main(int argc, char **argv)
   int ind;
   for (ind = 0; ind < (aptr1 -> length); ind ++)
     { aptr1 -> data[ind] = ind; } // 0, 1, 2, ..., 9
+  int sum = 0;
+  for (ind = 0; ind < (aptr1 -> length); ind ++)
+    { sum += aptr1 -> data[ind]; }
+  printf("sum = %d\n", sum);
   // save the data to a file
   FILE * fptr = fopen(filename, "w");
   // write the data to the file
@@ -46,7 +50,7 @@ int main(int argc, char **argv)
   if (fread(aptr2, sizeof(Array), 1, fptr) != 1)
     { return EXIT_FAILURE; } // fread fail
   // add the data
-  int sum = 0;
+  sum = 0;
   for (ind = 0; ind < (aptr2 -> length); ind ++)
     { sum += aptr2 -> data[ind]; }
   printf("sum = %d\n", sum);
