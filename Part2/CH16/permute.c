@@ -5,7 +5,8 @@
 void printArray(int * arr, int length)
 {
   int ind;
-  for (ind = 0; ind < length - 1; ind ++) { printf("%c ", arr[ind]); }
+  for (ind = 0; ind < length - 1; ind ++)
+    { printf("%c ", arr[ind]); }
   printf("%c\n", arr[length - 1]);
 }
 void swap(int * a, int * b)
@@ -35,9 +36,11 @@ void permute(int * arr, int num)
 }
 int main(int argc, char * argv[])
 {
-  if (argc != 2) { return EXIT_FAILURE; }
+  if (argc != 2)
+    { return EXIT_FAILURE; }
   int num = (int) strtol(argv[1], NULL, 10);
-  if (num <= 0) { return EXIT_FAILURE; }
+  if (num <= 0)
+    { return EXIT_FAILURE; }
   int * arr;
   arr = malloc(sizeof(int) * num);
   int ind;

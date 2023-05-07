@@ -27,7 +27,8 @@ int isStackSortable(int * arr, int first, int last)
 // return 1 if the range of the array is sortable
 // return 0 if the range of the array is not sortable
 {
-  if (first >= last) { return 1; } // no or one element is stack sortable
+  if (first >= last) // no or one element is stack sortable
+    { return 1; } 
   int maxIndex = findMaxIndex(arr, first, last);
   // consider the four cases: 
   // 1. both A and B are empty

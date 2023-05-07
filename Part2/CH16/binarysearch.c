@@ -3,11 +3,12 @@
 #include <stdlib.h>
 #include <time.h>
 #include <string.h>
-#define RANGE 100
+#define RANGE 1000
 int * arrGen(int size); // generate a sorted array of integers
 static int binarySearchHelp(int * arr, int low, int high, int key)
 {
-  if (low > high) { return -1; }
+  if (low > high) // array has no element
+    { return -1; } 
   int ind = (low + high) / 2;
   if (arr[ind] == key)
     { return ind; }
@@ -39,8 +40,10 @@ int main(int argc, char * * argv)
   for (count = 0; count < 10; count ++)
     {
       int key; 
-      if ((count % 2) == 0) { key = arr[rand() % num]; }
-      else { key = rand() % 100000; }
+      if ((count % 2) == 0)
+	{ key = arr[rand() % num]; }
+      else
+	{ key = rand() % 100000; }
       printf("search(%d), result = %d\n", key,
 	     binarySearch(arr, num, key));
     }
@@ -55,7 +58,7 @@ int * arrGen(int size)
   srand(time(NULL)); // set the seed
   int ind;
   arr[0] = rand() % RANGE;
-  for (ind = 1; ind < size; ind ++)
+  for (ind = 1; ind < size; ind ++) // increasing values
     { arr[ind] = arr[ind - 1] + (rand() % RANGE) + 1; }  
   return arr;
 }

@@ -15,8 +15,10 @@ int main(int argc, char ** argv)
   if (argc != 3) { return EXIT_FAILURE; }
   int num   = (int) strtol(argv[1], NULL, 10); // number of cards
   int round = (int) strtol(argv[2], NULL, 10); // how many times
-  if ((num < 2) || (num > MAX_SIZE))  { return EXIT_FAILURE; }
-  if (round < 1)                      { return EXIT_FAILURE; }
+  if ((num < 2) || (num > MAX_SIZE))
+    { return EXIT_FAILURE; }
+  if (round < 1)
+    { return EXIT_FAILURE; }
   char cards[MAX_SIZE] = // use 'T' for 10
     {'A', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K'};
   CardDeck origDeck;
@@ -110,4 +112,3 @@ void shuffle(CardDeck origDeck, int round)
   free (leftDeck);
   free (rightDeck);
 }
-

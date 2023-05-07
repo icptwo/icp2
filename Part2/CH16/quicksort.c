@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <string.h>
-#define RANGE        10000
+#define RANGE     10000
 static void swap(int * a, int * b)
 {
   int s = * a;
@@ -24,13 +24,16 @@ static void quickSortHelp(int * arr, int first, int last)
 	  // <= so that low will increment when arr[low] is the same
 	  // as pivot, using < will stop incrementing low when
 	  // arr[low] is the same as pivot and the outer while loop
-	  // will not stop
+	  // may not stop
 	  low ++;
 	}
-      while ((first < high) && (arr[high] > pivot)) { high --; }
-      if (low < high) { swap (& arr[low], & arr[high]);	}
+      while ((first < high) && (arr[high] > pivot))
+	{ high --; }
+      if (low < high)
+	{ swap (& arr[low], & arr[high]);	}
     }
-  if (pivot > arr[high]) { swap(& arr[first], & arr[high]); }
+  if (pivot > arr[high]) // move the pivot to the right place
+    { swap(& arr[first], & arr[high]); }
   quickSortHelp(arr, first, high - 1);
   quickSortHelp(arr, low, last);
 }
@@ -43,9 +46,11 @@ int * arrGen(int size)
 {
   if (size <= 0) { return NULL; }
   int * arr = malloc(sizeof(int) * size);
-  if (arr == NULL) { return NULL; }
+  if (arr == NULL)
+    { return NULL; }
   int ind;
-  for (ind = 0; ind < size; ind ++) { arr[ind] = rand() % RANGE; }  
+  for (ind = 0; ind < size; ind ++)
+    { arr[ind] = rand() % RANGE; }  
   return arr;
 }
 void printArray(int * arr, int len)
@@ -57,7 +62,8 @@ void printArray(int * arr, int len)
 #ifdef DEBUG
       printf("%d ", arr[ind]);
 #endif
-      if ((ind > 0) && (arr[ind] < arr[ind -1])) { sorted = 0;}
+      if ((ind > 0) && (arr[ind] < arr[ind -1]))
+	{ sorted = 0;}
     }
   printf("\nsorted = %d\n\n", sorted);
 }
@@ -68,7 +74,8 @@ int main(int argc, char * * argv)
       printf("need a positive integer\n");
       return EXIT_FAILURE;
     }
-  if (argc == 3) { srand(strtol(argv[2], NULL, 10)); }
+  if (argc == 3)
+    { srand(strtol(argv[2], NULL, 10)); }
   else { srand(time(NULL)); }
   int num = strtol(argv[1], NULL, 10);
   if (num <= 0)

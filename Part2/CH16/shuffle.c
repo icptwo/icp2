@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 #define MAX_SIZE 13
-typedef struct
+typedef struct // struct will be explained in Part III of the book
 {
   char cards[MAX_SIZE];
   int size;
@@ -23,7 +23,6 @@ int main(int argc, char ** argv)
   shuffle(origDeck);
   return EXIT_SUCCESS;
 }
-
 void printDeck(CardDeck deck)
 {
   int ind;
@@ -53,7 +52,6 @@ void divide(CardDeck origDeck, CardDeck * leftDeck, CardDeck * rightDeck)
     rightDeck[ind].size = rightSize;
   }
 }
-
 void interleaveHelper(CardDeck leftDeck, CardDeck rightDeck,
 		      CardDeck newDeck,
 		      int leftind, int rightind, int newind)
@@ -120,7 +118,6 @@ void shuffle(CardDeck origDeck)
       free (leftDeck);
       return;
     }
-  
   divide(origDeck, leftDeck, rightDeck);
   int ind;
   for (ind = 0; ind < numpairs; ind ++)
