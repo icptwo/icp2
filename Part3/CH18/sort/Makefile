@@ -4,7 +4,8 @@ GCC = gcc $(CFLAGS)
 SRCS = person.c main.c
 OBJS = $(SRCS:%.c=%.o)
 TEST = ./main database output1 output2
-VALGRIND = valgrind --tool=memcheck --leak-check=full --verbose --log-file=logfile
+VALGRIND = valgrind --tool=memcheck --leak-check=full
+VALGRIND += --verbose --log-file=logfile
 
 main: $(OBJS) 
 	$(GCC) $(OBJS) -o main

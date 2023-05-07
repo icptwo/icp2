@@ -99,8 +99,8 @@ static int comparebyName(const void * p1, const void * p2)
   const Person * * pp1 = (const Person * *) p1; 
   const Person * * pp2 = (const Person * *) p2;
   // get the elements
-  const Person const * pv1 = * pp1;
-  const Person const * pv2 = * pp2;
+  const Person * pv1 = * pp1;
+  const Person * pv2 = * pp2;
   // compare the attributes
   return strcmp((pv1 -> name), (pv2 -> name));
 }
