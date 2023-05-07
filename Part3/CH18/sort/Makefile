@@ -25,7 +25,3 @@ memory: main
 clean:
 	rm -f *.o *~ a.out main output* logfile
 
-headers:
-	makedepend $(SRCS) 
-# DO NOT DELETE
-
