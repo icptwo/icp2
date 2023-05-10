@@ -1,9 +1,10 @@
-// treedelete.c
+// CH21:treedelete.c
 #include "tree.h"
 #include <stdlib.h>
 TreeNode * Tree_delete(TreeNode * tn, int val)
 {
-  if (tn == NULL) { return NULL; }
+  if (tn == NULL)
+    { return NULL; }
   if (val < (tn -> value))
     {
       tn -> left = Tree_delete(tn -> left, val);
@@ -21,16 +22,14 @@ TreeNode * Tree_delete(TreeNode * tn, int val)
       free (tn);
       return NULL;
     }
-  if ((tn ->  left) == NULL)
+  if ((tn ->  left) == NULL) // tn ->  right must not be NULL 
     {
-      // tn ->  right must not be NULL 
       TreeNode * rc = tn ->  right;
       free (tn);
       return rc;
     }
-  if ((tn ->  right) == NULL)
-    {
-      // tn ->  left must not be NULL 
+  if ((tn ->  right) == NULL) // tn ->  left must not be NULL 
+    {      
       TreeNode * lc = tn ->  left;
       free (tn);
       return lc;
@@ -38,7 +37,8 @@ TreeNode * Tree_delete(TreeNode * tn, int val)
   // tn have two children 
   // find the immediate successor 
   TreeNode * su = tn ->  right; // su must not be NULL 
-  while ((su -> left) != NULL) { su = su -> left; }
+  while ((su -> left) != NULL) // while (su != NULL) is wrong
+    { su = su -> left; }
   // su is tn's immediate successor, swap their values 
   tn ->  value = su -> value;
   su -> value = val;

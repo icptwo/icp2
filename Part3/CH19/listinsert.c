@@ -1,5 +1,6 @@
 // CH19:listinsert.c
 #include "list.h"
+#include <stdio.h>
 static Node * Node_construct(int val)
 {
   Node * nd = malloc(sizeof(Node));

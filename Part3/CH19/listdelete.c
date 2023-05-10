@@ -1,5 +1,6 @@
 // CH19:listdelete.c
 #include "list.h"
+#include <stdio.h>
 Node * List_delete(Node * head, int val)
 {
   printf("delete %d\n", val);
@@ -13,8 +14,9 @@ Node * List_delete(Node * head, int val)
       free (q);
       return head;
     }
-  // not deleting the head node 
-  Node * q = p -> next; // p is before q
+  // not deleting the head node
+  Node * p = head;
+  q = p -> next; // p is before q
   while ((q != NULL) && ((q -> value) != val))
     {
       // check whether q is NULL before checking q -> value

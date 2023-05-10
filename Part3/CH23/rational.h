@@ -15,14 +15,16 @@ void rational_from_long(Rational *number, long num);
 long rational_numerator(Rational *number);
 long rational_denominator(Rational *number);
 void rational_print(const Rational *number, FILE *stream);
-void rational_add(const Rational *n1, const Rational *n2, Rational *result);
+void rational_add(const Rational *n1, const Rational *n2,
+		  Rational *result);
 void rational_subtract(const Rational *n1, const Rational *n2,
 		       Rational *result);
 void rational_multiply(const Rational *n1, const Rational *n2,
 		       Rational *result);
 void rational_divide(const Rational *n1, const Rational *n2,
 		     Rational *result);
-void rational_compare(const Rational *n1, const Rational *n2, int *result);
+void rational_compare(const Rational *n1, const Rational *n2,
+		      int *result);
 bool long_add(long a, long b, long *c);
 bool long_multiply(long a, long b, long *c);
 bool long_subtract(long a, long b, long *c);

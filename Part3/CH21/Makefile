@@ -14,6 +14,6 @@ memory: tree
 	$(GCC) $(CFLAGS) -c $*.c 
 
 clean:
-	rm -f *.o a.out tree
+	rm -f *.o a.out tree *~
 
 

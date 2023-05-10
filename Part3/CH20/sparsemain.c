@@ -4,9 +4,11 @@
 #include "sparse.h"
 int main(int  argc, char ** argv)
 {
-  if (argc != 4) { return EXIT_FAILURE; }
+  if (argc != 4)
+    { return EXIT_FAILURE; }
   Node * arr1 = List_read(argv[1]);
-  if (arr1 == NULL) { return EXIT_FAILURE; }
+  if (arr1 == NULL)
+    { return EXIT_FAILURE; }
   Node * arr2 = List_read(argv[2]);
   if (arr2 == NULL)
     {

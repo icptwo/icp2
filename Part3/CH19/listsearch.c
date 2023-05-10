@@ -1,4 +1,6 @@
 // CH19:listsearch.c
+#include "list.h"
+#include <stdio.h>
 Node * List_search(Node * head, int val)
 // head: the head node of the linked list
 // val: the value to search

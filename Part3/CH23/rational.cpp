@@ -1,9 +1,7 @@
+// CH23:rational.cpp
 #include <math.h>
-#include <errno.h>
 #include <stdio.h>
-#include <string.h>
 #include <stdlib.h>
-#include <assert.h>
 #include <limits.h>
 #include "rational.h"
 static long long_gcd(long a, long b)
@@ -124,15 +122,18 @@ static void rational_add_sub(const Rational *n1, const Rational *n2,
     }
   rational_internal_init(result, num, den1den2);
 }
-void rational_add(const Rational *n1, const Rational *n2, Rational *result)
+void rational_add(const Rational *n1, const Rational *n2,
+		  Rational *result)
 {
   rational_add_sub(n1, n2, result, true);
 }
-void rational_subtract(const Rational *n1, const Rational *n2, Rational *result)
+void rational_subtract(const Rational *n1, const Rational *n2,
+		       Rational *result)
 {
   rational_add_sub(n1, n2, result, false);
 }
-void rational_multiply(const Rational *n1, const Rational *n2, Rational *result)
+void rational_multiply(const Rational *n1, const Rational *n2,
+		       Rational *result)
 {
   if (((n1->valid) == false) || ((n2->valid) == false))
     {
@@ -151,7 +152,8 @@ void rational_multiply(const Rational *n1, const Rational *n2, Rational *result)
     }
   rational_internal_init(result, num1num2, den1den2);
 }
-void rational_divide(const Rational *n1, const Rational *n2, Rational *result)
+void rational_divide(const Rational *n1, const Rational *n2,
+		     Rational *result)
 {
   if (((n1->valid) == false) || ((n2->valid) == false) ||
       ((n2->num) == 0))
@@ -170,12 +172,13 @@ void rational_divide(const Rational *n1, const Rational *n2, Rational *result)
     }
   rational_internal_init(result, num1den2, den1num2);
 }
-void rational_compare(const Rational *n1, const Rational *n2, int *result)
+void rational_compare(const Rational *n1, const Rational *n2,
+		      int *result)
 {
   // result = -1 if (n1) < (n2)
   // result = 0 if (n1) == (n2)
   // result = 1 if (n1) > (n2)
-  // result = 2 if either n1 or n2 is valid or overflow
+  // result = 2 if either n1 or n2 is invalid or overflow
   Rational diff;
   rational_subtract(n1, n2, & diff);
   if ((diff.valid) == false)

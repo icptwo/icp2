@@ -1,3 +1,4 @@
+// CH21:build/main.c
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
@@ -5,12 +6,14 @@
 static bool readArray(const char * filename, int * * array, int * size)
 {
   FILE * fptr = fopen(filename, "r");
-  if (fptr == NULL) { return false; }
+  if (fptr == NULL)
+    { return false; }
   int numint = 0;
   int value;
   while (fscanf(fptr, "%d", & value) == 1) // count the number of int
     { numint ++; }
-  if (numint == 0) { return false; } // read no int
+  if (numint == 0)
+    { return false; } // read no int
   * size = numint;
   int * arr = malloc(sizeof(int) * numint);
   fseek (fptr, 0, SEEK_SET);
@@ -35,7 +38,8 @@ int main(int argc, char * * argv)
   // argv[1]: inorder   (input)
   // argv[2]: postorder (input)
   // argv[3]: preorder  (output)
-  if (argc < 4) { return EXIT_FAILURE; }
+  if (argc < 4)
+    { return EXIT_FAILURE; }
   int * inArray = NULL;
   int * postArray = NULL;
   int insize;
@@ -43,9 +47,7 @@ int main(int argc, char * * argv)
   bool rtv;
   rtv = readArray(argv[1], & inArray, & insize);
   if (rtv == false)
-    {
-      return EXIT_FAILURE;
-    }
+    { return EXIT_FAILURE; }
   rtv = readArray(argv[2], & postArray, & postsize);
   if (rtv == false)
     {

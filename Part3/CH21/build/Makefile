@@ -2,7 +2,8 @@
 # build a binary tree from in-order and post-order
 ERROR = -Wvla -Werror
 GCC = gcc -std=c99 -g $(WARNING) $(ERROR) 
-VAL = valgrind --tool=memcheck --log-file=vallog --leak-check=full --verbose
+VAL = valgrind --tool=memcheck --log-file=vallog
+VAL += --leak-check=full --verbose
 
 SRCS = main.c tree.c
 OBJS = $(SRCS:%.c=%.o)
@@ -14,7 +15,7 @@ build: testgen $(OBJS)
 
 testgen: testgen.o tree.o
 	$(GCC) testgen.o tree.o -o testgen
-	./testgen 8 inorder postorder preorder 6 
+	./testgen 18 inorder postorder preorder 6 
 
 .c.o: 
 	$(GCC) $(TESTFALGS) -c $*.c 

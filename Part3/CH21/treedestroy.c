@@ -1,4 +1,4 @@
-// treedestroy.c
+// CH21:treedestroy.c
 #include "tree.h"
 #include <stdlib.h>
 void Tree_destroy(TreeNode * n)
@@ -8,4 +8,3 @@ void Tree_destroy(TreeNode * n)
   Tree_destroy(n -> right);
   free(n);
 }
-

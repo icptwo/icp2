@@ -8,7 +8,8 @@ static Node * List_copy(Node * head);
 Node * List_read(char * filename)
 {
   FILE * fptr = fopen(filename, "r");
-  if (fptr == NULL) { return NULL; }
+  if (fptr == NULL)
+    { return NULL; }
   int ind;
   int val;
   Node * head = NULL;
@@ -20,7 +21,8 @@ Node * List_read(char * filename)
 int List_save(char * filename, Node * arr)
 {
   FILE * fptr = fopen(filename, "w");
-  if (fptr == NULL) { return 0; }
+  if (fptr == NULL)
+    { return 0; }
   while (arr != NULL)
     {
       fprintf(fptr, "%d %d\n", arr -> index, arr -> value);
@@ -62,8 +64,10 @@ static Node * Node_create(int ind, int val)
 // The returned list is sorted by the index.
 static Node * List_insert(Node * head, int ind, int val)
 {
-  if (val == 0) { return head; } // do not insert zero value
-  if (head == NULL) { return Node_create(ind, val); }
+  if (val == 0)
+    { return head; } // do not insert zero value
+  if (head == NULL) // this is the only node
+    { return Node_create(ind, val); }
   if ((head -> index) > ind) // insert the new node before the list
     {
       Node * ptr = Node_create(ind, val);
