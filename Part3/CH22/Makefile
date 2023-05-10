@@ -3,18 +3,18 @@ GCC = gcc
 CFLAGS = -g -Wall -Wshadow
 LIBS = -lpthread
 VALGRIND = valgrind --tool=memcheck 
-VALGRIND += --verbose --log-file
-COMMONOBJS = countint.o isvalid.o subsetequal.o main.o
+VALGRIND += --verbose --log-file=valog
+OBJS = countint.o isvalid.o subsetequal.o main.o
 
-thread1: thread1.c
-	$(GCC) $(CFLAGS) thread1.c -o thread1 $(LIBS)
-	$(VALGRIND)=log1 ./thread1 
+thread: thread.c
+	$(GCC) $(CFLAGS) thread.c -o thread $(LIBS)
+	$(VALGRIND) ./thread 
 
-sequential: sequential.c $(COMMONOBJS)
-	$(GCC) $(CFLAGS) sequential.c $(COMMONOBJS) -o sequential
+sequential: sequential.c $(OBJS)
+	$(GCC) $(CFLAGS) sequential.c $(OBJS) -o sequential
 
-parallel: parallel.c $(COMMONOBJS)
-	$(GCC) $(CFLAGS) parallel.c $(COMMONOBJS) -o parallel $(LIBS)
+parallel: parallel.c $(OBJS)
+	$(GCC) $(CFLAGS) parallel.c $(OBJS) -o parallel $(LIBS)
 
 sync: sync.c
 	$(GCC) $(CFLAGS) sync.c -o sync $(LIBS)
@@ -25,14 +25,25 @@ outsync: outsync.c
 	./outsync
 
 testall: parallel sequential
-	/bin/rm -f -r outputs
-	mkdir outputs
+	/bin/rm -f -r outputs # remove the directory
+	mkdir outputs # create the directory
+	for case in 1 2 3 4 5; do \
+	echo input$$case; \
+	./parallel inputs/validyes$$case > outputs/pa_out_vy$$case; \
+	./parallel inputs/validno$$case > outputs/pa_out_vn$$case; \
+	./parallel inputs/invalid$$case > outputs/pa_out_iv$$case; \
+	./sequential inputs/validyes$$case > outputs/se_out_vy$$case; \
+	./sequential inputs/validno$$case > outputs/se_out_vn$$case; \
+	./sequential inputs/invalid$$case > outputs/se_out_iv$$case; \
+	done
+
+oldtestall: parallel sequential
 	./parallel inputs/validyes1 > outputs/paloutvy1
 	./parallel inputs/validyes2 > outputs/paloutvy2
 	./parallel inputs/validyes3 > outputs/paloutvy3
 	./parallel inputs/validyes4 > outputs/paloutvy4
 	./parallel inputs/validyes5 > outputs/paloutvy5
-	# ./parallel inputs/validyes6 > outputs/paloutvy6
+	# ./parallel inputs/validyes6 > outputs/paloutvy6 # this will tkae long time
 	./parallel inputs/validno1  > outputs/paloutvn1
 	./parallel inputs/validno2  > outputs/paloutvn2
 	./parallel inputs/validno3  > outputs/paloutvn3
@@ -68,6 +79,18 @@ testgen: testgen.c
 	$(GCC) $(CFLAGS) testgen.c -o testgen
 	/bin/rm -f -r inputs
 	mkdir inputs
+	for case in 1 2 3 4 5; do \
+	size = 5 * $$case
+	echo $$size
+	./testgen  $$size 1 1 > inputs/validyes$$case; \
+	./testgen  $$size 1 0 > inputs/validno$$case; \
+	./testgen  $$size  0 0 > inputs/invalid$$case; \
+	done
+
+oldtestgen: testgen.c
+	$(GCC) $(CFLAGS) testgen.c -o testgen
+	/bin/rm -f -r inputs
+	mkdir inputs
 	./testgen  5 1 1 > inputs/validyes1
 	./testgen 10 1 1 > inputs/validyes2
 	./testgen 15 1 1 > inputs/validyes3
@@ -87,14 +110,11 @@ testgen: testgen.c
 	./testgen 25 0 0 > inputs/invalid5
 	./testgen 30 0 0 > inputs/invalid6
 
+
 .c.o: 
 	$(GCC) $(CFLAGS) -c $*.c 
 
 clean:
-	/bin/rm -f thread1 seqout* parallel  
+	/bin/rm -f thread seqout* parallel  
 	/bin/rm -f sequential log* testgen *.o
 	/bin/rm -f -r outputs sync outsync
-
-
-
-
