@@ -28,8 +28,8 @@ testinputs: parallel sequential
 	/bin/rm -f -r outputs # remove the directory
 	mkdir outputs # create the directory
 	for case in inputs/*; do \
-	echo $$case; \
-	echo  $(dirname $$case); \
+	# echo $$case; \
+	  $(dirname $$case); \
 	done
 
 testall: parallel sequential
