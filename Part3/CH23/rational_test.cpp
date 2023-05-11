@@ -1,4 +1,4 @@
-// rational_test.cpp
+// CH23:rational_test.cpp
 #include <gtest/gtest.h>
 #include <limits.h>
 #include "rational.h"
@@ -25,7 +25,7 @@ TEST(RationalTest, Long)
   // small numbers
   a = 25;
   b = 35;
-  // The following test will fail, should not overflow
+  // The following test will fail, should not overflow (thus, false)
   // EXPECT_TRUE(long_add(a, b, &c));      
   // EXPECT_TRUE(long_subtract(a, b, &c)); 
   // EXPECT_TRUE(long_multiply(a, b, &c)); 
@@ -53,14 +53,14 @@ TEST(RationalTest, Compare)
   rational_init(&r2, 300, 400);
   rational_init(&r3, 3, 4);
   int result;
-  rational_compare(&r1, &r2, &result);
+  rational_compare(&r1, &r2, &result); // 1/2 < 3/4 => -1
   EXPECT_LT(result, 0);
-  rational_compare(&r3, &r2, &result);
+  rational_compare(&r3, &r2, &result); // result is -1
   EXPECT_EQ(result, 0);
   rational_init(&r2, 3, 0); // invalid
   rational_compare(&r3, &r2, &result); // result shoud be 2
-  EXPECT_GT(result, 1); 
-  rational_from_rational(&r2, &r3);
+  EXPECT_GT(result, 1);  
+  rational_from_rational(&r2, &r3); // r2 same as r3, => 0
   rational_compare(&r3, &r2, &result);
   // The following should fail
   // EXPECT_EQ(result, 1); 
@@ -72,7 +72,7 @@ TEST(RationalTest, Add)
   rational_init(&r1, 1, 2);
   rational_init(&r2, -1, 4);
   rational_init(&expected, 1, 4);
-  rational_add(&r1, &r2, &result);
+  rational_add(&r1, &r2, &result); // 1/2 + (-1/4) = 1/4
   rational_compare(&result, &expected, &comparison);
   EXPECT_EQ(comparison, 0);
   rational_init(&r1, LONG_MAX, 2);

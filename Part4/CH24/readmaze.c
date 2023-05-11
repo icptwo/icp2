@@ -2,6 +2,7 @@
 // read a maze file and store it in a two-dimensional array
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 int main(int argc, char * argv[])
 {
   FILE * fptr;
@@ -32,7 +33,8 @@ int main(int argc, char * argv[])
 	    {
 	      row ++;
 	      // remember the longest row
-	      if (numberColumn < column) { numberColumn = column; }
+	      if (numberColumn < column)
+		{ numberColumn = column; }
 	      column = 0;
 	    }
 	  else  { column ++;  }
@@ -42,7 +44,10 @@ int main(int argc, char * argv[])
   // allocate memory for the mazeArr 
   mazeArr = malloc(numberRow * sizeof (int *));
   for (row = 0; row < numberRow; row ++)
-    { mazeArr[row] = malloc(numberColumn * sizeof (int)); }
+    {
+      mazeArr[row] = malloc(numberColumn * sizeof (int));
+      memset(mazeArr[row], 'b', numberColumn * sizeof (int));
+    }
   fseek(fptr, 0, SEEK_SET); // return to the beginning of the file 
   // read the file again and fill the two-dimensional array
   row = 0;
@@ -73,7 +78,8 @@ int main(int argc, char * argv[])
 	{ printf("%c", mazeArr[row][column]); }      
       printf("\n");
     }
-  for (row = 0; row < numberRow; row ++)  { free (mazeArr[row]); }
+  for (row = 0; row < numberRow; row ++)
+    { free (mazeArr[row]); }
   free (mazeArr);
   return EXIT_SUCCESS;
 }

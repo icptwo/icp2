@@ -24,6 +24,14 @@ outsync: outsync.c
 	$(GCC) $(CFLAGS) outsync.c -o outsync $(LIBS)
 	./outsync
 
+testinputs: parallel sequential
+	/bin/rm -f -r outputs # remove the directory
+	mkdir outputs # create the directory
+	for case in inputs/*; do \
+	echo $$case; \
+	echo  $(dirname $$case); \
+	done
+
 testall: parallel sequential
 	/bin/rm -f -r outputs # remove the directory
 	mkdir outputs # create the directory
@@ -79,12 +87,10 @@ testgen: testgen.c
 	$(GCC) $(CFLAGS) testgen.c -o testgen
 	/bin/rm -f -r inputs
 	mkdir inputs
-	for case in 1 2 3 4 5; do \
-	size = 5 * $$case
-	echo $$size
-	./testgen  $$size 1 1 > inputs/validyes$$case; \
-	./testgen  $$size 1 0 > inputs/validno$$case; \
-	./testgen  $$size  0 0 > inputs/invalid$$case; \
+	for case in 5 10 15 20 25 30; do \
+	./testgen  $$case 1 1 > inputs/validyes$$case; \
+	./testgen  $$case 1 0 > inputs/validno$$case; \
+	./testgen  $$case  0 0 > inputs/invalid$$case; \
 	done
 
 oldtestgen: testgen.c

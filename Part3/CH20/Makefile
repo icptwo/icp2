@@ -19,4 +19,4 @@ sparsemain: $(SOURCES)
 	grep "ERROR SUMMARY" valgrindlog*
 
 clean:
-	/bin/rm -f sparsemain *~ outputs/* *log*
+	/bin/rm -f sparsemain *~ output* *log*

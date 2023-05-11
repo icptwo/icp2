@@ -35,10 +35,11 @@ int main(int argc, char *argv[])
   rational_divide(&r1, &r2, &result); // (1/3) / (-1/2) = - 2/3
   rational_print(&result, stdout);
   rational_init(&result, 1, 1);
-  // exponent until it is no longer valid
+  // exponent until it is no longer valid, r1 = 1/3
   int pwd = 1;
   while (result.valid) 
     {
+      // 1/3, 1/9, 1/27 ...
       rational_multiply(&result, &r1, &result);
       printf("r1^%d = ", pwd);
       if (result.valid)
@@ -51,11 +52,12 @@ int main(int argc, char *argv[])
       pwd ++;
     }
   rational_init(&result, 1, 1);
+  // multiple until it is no longer valid, r1 = 1/3, r2 = 1/2
   pwd = 2;
   while (result.valid)
     {
-      rational_multiply(&r1, &r1, &r1);
-      rational_multiply(&r2, &r2, &r2);
+      rational_multiply(&r1, &r1, &r1); // square of r1
+      rational_multiply(&r2, &r2, &r2); // square of r2
       printf("r1^%d = ", pwd);
       rational_print(&r1, stdout);
       printf("r2^%d = ", pwd);
