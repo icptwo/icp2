@@ -1,14 +1,13 @@
 # CH22:Makefile
+SHELL = /bin/bash
 GCC = gcc
 CFLAGS = -g -Wall -Wshadow
 LIBS = -lpthread
-VALGRIND = valgrind --tool=memcheck 
-VALGRIND += --verbose --log-file=valog
 OBJS = countint.o isvalid.o subsetequal.o main.o
 
 thread: thread.c
 	$(GCC) $(CFLAGS) thread.c -o thread $(LIBS)
-	$(VALGRIND) ./thread 
+	./run-valgrind.sh ./thread
 
 sequential: sequential.c $(OBJS)
 	$(GCC) $(CFLAGS) sequential.c $(OBJS) -o sequential
@@ -25,11 +24,11 @@ outsync: outsync.c
 	./outsync
 
 testinputs: parallel sequential
-	/bin/rm -f -r outputs # remove the directory
-	mkdir outputs # create the directory
+	/bin/rm -f -r outputs
+	mkdir outputs
 	for case in inputs/*; do \
-	# echo $$case; \
-	  $(dirname $$case); \
+	echo $$case; \
+	  dirname $$case; \
 	done
 
 testall: parallel sequential
