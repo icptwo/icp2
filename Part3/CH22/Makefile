@@ -23,7 +23,7 @@ outsync: outsync.c
 	$(GCC) $(CFLAGS) outsync.c -o outsync $(LIBS)
 	./outsync
 
-testinputs: parallel sequential
+testinputs: parallel sequential testgen
 	/bin/rm -f -r outputs
 	mkdir outputs
 	for case in inputs/*; do \
@@ -89,35 +89,14 @@ testgen: testgen.c
 	$(GCC) $(CFLAGS) testgen.c -o testgen
 	/bin/rm -f -r inputs
 	mkdir inputs
-	for case in 5 10 15 20 25 30; do \
+	# 1 1: valid input, subset sum: yes
+	# 1 0: valid input, subset sum: no
+	# 0 0: invalid input
+	for case in 5 10 15 20 ; do \
 	./testgen  $$case 1 1 > inputs/validyes$$case; \
 	./testgen  $$case 1 0 > inputs/validno$$case; \
 	./testgen  $$case  0 0 > inputs/invalid$$case; \
 	done
-
-oldtestgen: testgen.c
-	$(GCC) $(CFLAGS) testgen.c -o testgen
-	/bin/rm -f -r inputs
-	mkdir inputs
-	./testgen  5 1 1 > inputs/validyes1
-	./testgen 10 1 1 > inputs/validyes2
-	./testgen 15 1 1 > inputs/validyes3
-	./testgen 20 1 1 > inputs/validyes4
-	./testgen 25 1 1 > inputs/validyes5
-	./testgen 30 1 1 > inputs/validyes6
-	./testgen  5 1 0 > inputs/validno1
-	./testgen 10 1 0 > inputs/validno2
-	./testgen 15 1 0 > inputs/validno3
-	./testgen 20 1 0 > inputs/validno4
-	./testgen 25 1 0 > inputs/validno5
-	./testgen 30 1 0 > inputs/validno6
-	./testgen  5 0 0 > inputs/invalid1
-	./testgen 10 0 0 > inputs/invalid2
-	./testgen 15 0 0 > inputs/invalid3
-	./testgen 20 0 0 > inputs/invalid4
-	./testgen 25 0 0 > inputs/invalid5
-	./testgen 30 0 0 > inputs/invalid6
-
 
 .c.o: 
 	$(GCC) $(CFLAGS) -c $*.c 
@@ -125,4 +104,4 @@ oldtestgen: testgen.c
 clean:
 	/bin/rm -f thread seqout* parallel  
 	/bin/rm -f sequential log* testgen *.o
-	/bin/rm -f -r outputs sync outsync
+	/bin/rm -f -r outputs sync outsync inputs
