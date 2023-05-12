@@ -27,11 +27,11 @@ testinputs: parallel sequential
 	/bin/rm -f -r outputs
 	mkdir outputs
 	for case in inputs/*; do \
-	# echo $$case; \
-	# dirname $$case; \
-	$filename = basename  $$case; \
-	echo $$filename; \
-	./parallel $$case > outputs/$$filename.result; \
+		echo $$case; \
+		dirname $$case; \
+		filename=$$(basename $$case); \
+		echo $$filename; \
+		./parallel $$case > outputs/$$filename.result; \
 	done
 
 testall: parallel sequential
