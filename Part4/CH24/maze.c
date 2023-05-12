@@ -10,9 +10,7 @@ bool readMaze(const char * filename, Maze ** maz)
 {
   FILE * fptr = fopen(filename, "r");
   if (fptr == NULL)
-    {
-      return false;
-    }
+    { return false; }
     int linelen = 0;
   int maxlinelen = 0;
   int numline = 0;
@@ -25,10 +23,12 @@ bool readMaze(const char * filename, Maze ** maz)
 	  if (onech == '\n') // end of a line
 	    {
 	      numline ++;
-	      if (maxlinelen < linelen) { maxlinelen = linelen; }
+	      if (maxlinelen < linelen)
+		{ maxlinelen = linelen; }
 	      linelen = 0;
 	    }
-       else { linelen ++; }
+       else
+	 { linelen ++; }
 	}
     }
   if (numline <= 2) // invalid maze
@@ -64,7 +64,8 @@ bool readMaze(const char * filename, Maze ** maz)
       while (breakline == false)
 	{
 	  onech = fgetc(fptr);
-	  if (onech == EOF) { return false; } // should not happen
+	  if (onech == EOF)
+	    { return false; } // should not happen
 	  switch (onech)
 	    {
 	    case ' ': // corridor
@@ -75,7 +76,7 @@ bool readMaze(const char * filename, Maze ** maz)
 	      mz -> cells[indrow][indcol] = maxlength;
 	      break;
 	    case 's':
-	      mz -> cells[indrow][indcol] = 0;
+	      mz -> cells[indrow][indcol] = 0; // distance from start is 0
 	      mz -> startrow = indrow;
 	      mz -> startcol = indcol;
 	      break;
@@ -83,7 +84,7 @@ bool readMaze(const char * filename, Maze ** maz)
 	      breakline = true;
 	      break;
 	    case 'b':
-	      mz -> cells[indrow][indcol] = -1;
+	      mz -> cells[indrow][indcol] = -1; // -1 means unreachable
 	    }
 	  indcol ++;
 	}
