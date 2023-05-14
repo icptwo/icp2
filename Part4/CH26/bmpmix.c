@@ -1,4 +1,6 @@
 // bmpmix.c (mix colors)
+// create three circles of red, green, blue
+// input img's pixels not used
 #include "bmpfunc.h"
 #include <string.h>
 #include <stdio.h>
@@ -19,42 +21,30 @@ void BMP_mix(BMP_Image *img)
   (img -> header).size = 
     img -> data_size + sizeof(BMP_Header);
   (img -> header).imagesize = img -> data_size;
-
   // release the memory storing the data
   free (img -> data);
-
   // allocate memory for the correct size
-  img -> data = 
-    malloc(sizeof(unsigned char) * (img -> data_size));
-  if ((img -> data) == NULL)
-    {
-      return; 
-    }
-  
+  img -> data = malloc(sizeof(unsigned char) * (img -> data_size));
+  if ((img -> data) == NULL)  { return; }
   // set all pixels to black
-  bzero(img-> data, 
-	sizeof(unsigned char) * (img -> data_size));
-
+  bzero(img-> data, sizeof(unsigned char) * (img -> data_size));
   // draw red 
   int centerx = 127;
   int centery = 80;
   int radius  = 70;
   int row;
   int col;
-  for (col = centerx - radius; col < centerx + radius; 
-       col ++)
+  for (col = centerx - radius; col < centerx + radius; col ++)
     {
       int xval = col - centerx;
       int yrange = 
 	(int) sqrt(radius * radius - xval * xval);
-      for (row = centery - yrange; row < centery + yrange; 
-	   row ++)
+      for (row = centery - yrange; row < centery + yrange;  row ++)
 	{
 	  int ind = 3 * (row * HIST_WIDTH + col);
 	  img -> data[ind + 2] = 255;
 	}
     }
-  
   // draw green
   centerx = 87;
   centery = 167;
@@ -71,7 +61,6 @@ void BMP_mix(BMP_Image *img)
 	  img -> data[ind + 1] = 255;
 	}
     }
-
   // draw blue
   centerx = 167;
   centery = 167;
