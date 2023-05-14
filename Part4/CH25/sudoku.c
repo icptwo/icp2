@@ -7,13 +7,13 @@
 #include "sudoku.h"
 static void initSudoku(Sudoku * sud);
 static void removeUsed(Sudoku * sud, int row, int col, char val);
-static void printAllow(Sudoku * sud);
 static void createSudoku(char * numbers, Sudoku *sud);
 static void fillSudoku(Sudoku * sud);
 static bool isValidFill(Sudoku * sud, int row, int col, char val);
 static bool guessFillHelper(Sudoku * sud, int row, int col);
 static void guessFill(Sudoku * sud);
-bool fileSudoku(char * filename, Sudoku * sud)
+void printAllow(Sudoku * sud); // for debugging
+bool readSudoku(char * filename, Sudoku * sud)
 {
   FILE * fptr = fopen(filename, "r");
   if (fptr == NULL) { return false; }
@@ -74,8 +74,8 @@ void solveSudoku(Sudoku * sud)
       if (filled == (sud -> filled)) { progress = false; } 
     }
   if ((sud -> filled) == 81) { return; } // solved
-  printf("need recursion\n");
-  printSudoku(sud);
+  // printf("need recursion\n");
+  // printSudoku(sud);
   guessFill(sud);   // need to guess 
 }
 static void createSudoku(char * numbers, Sudoku *sud)
@@ -98,8 +98,8 @@ static void createSudoku(char * numbers, Sudoku *sud)
 	  cnt ++;
 	}
     }
-  printSudoku(sud);
-  printAllow(sud);	  
+  // printSudoku(sud);
+  // printAllow(sud);	  
 }
 static void initSudoku(Sudoku * sud)
 {
@@ -131,7 +131,7 @@ static void removeUsed(Sudoku * sud, int row, int col, char val)
 	{ sud -> allowed[rowcnt][colcnt][val - '0'] = false; } 
     }
 }
-static void printAllow(Sudoku * sud)
+void printAllow(Sudoku * sud)
 {
   for (int row = 0; row < 9; row ++)
     {
@@ -147,13 +147,13 @@ static void printAllow(Sudoku * sud)
 	    }
 	  if (skip == false)
 	    {
-	      printf("Allow at [%d][%c]: ", row + 1, col + 'A');
+	      // printf("Allow at [%d][%c]: ", row + 1, col + 'A');
 	      for (allow = 1; allow <= 9; allow ++)
 		{
 		  if (sud -> allowed[row][col][allow] == true)
-		    { printf("%d ", allow);	}
+		    { /* printf("%d ", allow); */ }
 		}
-	      printf("\n");
+	      // printf("\n");
 	    }
 	}
     }

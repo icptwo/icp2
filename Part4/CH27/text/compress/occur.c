@@ -1,4 +1,4 @@
-// occur.c
+// CH27:text/compress/occur.c
 #include "occur.h"
 #include <stdio.h>
 #include <stdlib.h>

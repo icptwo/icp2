@@ -18,7 +18,7 @@ test: maze
 	done
 
 clean: # remove all machine generated files
-	rm -f maze *.o output* a.out *~
+	rm -f maze *.o output* a.out *~ 
 
 
 

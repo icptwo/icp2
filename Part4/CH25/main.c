@@ -1,3 +1,4 @@
+// CH25:main.c
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
@@ -17,7 +18,7 @@ int main(int argc, char * * argv)
   bool rtv = false;
   int servsock;
   if (strcmp(argv[1], "f") == 0)
-    { rtv = fileSudoku(argv[2], & sud); }
+    { rtv = readSudoku(argv[2], & sud); }
   else
     {
       if (strcmp(argv[1], "n") == 0)
@@ -29,11 +30,10 @@ int main(int argc, char * * argv)
     }
   if (rtv == false) { return EXIT_FAILURE; }
   solveSudoku(& sud);
-  printSudoku(& sud);
+  // printSudoku(& sud);
   if (strcmp(argv[1], "f") == 0)
     { saveSudoku(argv[3], & sud); }
   else
     { sendSudoku(servsock, & sud); }
   return EXIT_SUCCESS;
 }
-

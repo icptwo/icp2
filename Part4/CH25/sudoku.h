@@ -4,11 +4,11 @@
 #include <stdbool.h>
 typedef struct
 {
-  int filled;
-  char cells[9][9];
-  bool allowed[9][9][10]; // [][][0] not used
+  int filled; // how many cells' values are final
+  char cells[9][9]; // cells' values
+  bool allowed[9][9][10]; // what is allowed in each cell? [][][0] not used
 } Sudoku;
-bool fileSudoku(char * filename, Sudoku * sud);
+bool readSudoku(char * filename, Sudoku * sud);
 void printSudoku(Sudoku * sud);
 void saveSudoku(char * filename, Sudoku * sud);
 void solveSudoku(Sudoku * sud);

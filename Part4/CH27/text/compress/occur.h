@@ -1,11 +1,11 @@
-// occur.h
+// CH27:text/compress/occur.h
 // count the number of occurrences of the characters in a file
 #ifndef OCCUR_H
 #define OCCUR_H
 typedef struct
 {
   char ascii;     // ASCII value
-  int occur;
+  int occur;      // how many times does this ASCII value occurs
 } CharOccur;
 // count the occurrencies of the characters
 // return the number of characters 

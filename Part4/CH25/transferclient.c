@@ -1,4 +1,4 @@
-// transferclient.c
+// CH25:transferclient.c
 #include <stdio.h>	
 #include <string.h>	
 #include <sys/socket.h>	//socket
@@ -73,4 +73,3 @@ int main(int argc , char **argv)
   fclose(fptr);
   return EXIT_SUCCESS;
 }
-

@@ -29,7 +29,7 @@ test: sudoku
 	done
 
 memory: sudoku
-	$(VAL) ./sudoku input02 > output02
+	$(VAL) ./sudoku f inputs/input2 output2
 
 clean: # remove all machine generated files
 	rm -f sudoku *.o output* vallog *~ server client check
