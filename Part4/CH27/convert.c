@@ -1,9 +1,9 @@
-// convert.c
+// CH27:convert.c
 // convert a test case from letter-occurrence pair to print the letters
 // for example, if input is a 23, this program prints a 23 times
 #include <stdio.h>
 #include <stdlib.h>
-#define NUMCHAR 128
+#define NUMCHAR 256
 int main(int argc, char * * argv)
 {
   if (argc != 3) { return EXIT_FAILURE; }
