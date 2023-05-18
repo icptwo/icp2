@@ -6,4 +6,4 @@ coverge: coverage.c
 	gcov coverage.c
 	grep "##" coverage.c.gcov
 clean:
-	rm -f *.gcov *.gcno coverage *gcda
+	rm -f *.gcno coverage *gcda
