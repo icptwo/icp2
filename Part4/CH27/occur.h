@@ -1,4 +1,4 @@
-// CH27:text/compress/occur.h
+// CH27:occur.h
 // count the number of occurrences of the characters in a file
 #ifndef OCCUR_H
 #define OCCUR_H

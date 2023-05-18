@@ -1,9 +1,9 @@
-// CH27:text/compress/occur.c
+// CH27:occur.c
 #include "occur.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <strings.h>
-#define NUMCHAR 128 
+#define NUMCHAR 256
 int countOccur(char * filename, CharOccur * occur)
 {
   FILE * fptr = fopen(filename, "r");
@@ -57,6 +57,9 @@ void sortOccur(CharOccur * occur)
   qsort(occur, NUMCHAR, sizeof(CharOccur), compareOccur);
 }
 #ifdef TEST_OCCUR
+// This pair of ifdef ... endif allows the functions above to be
+// used by other programs
+// If this program is tested alone, add -DTEST_OCCUR after gcc
 int main(int argc, char * * argv)
 {
   if (argc != 2) { return EXIT_FAILURE; } // need a file name
