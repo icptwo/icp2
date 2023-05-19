@@ -95,3 +95,20 @@ int main(int argc, char * * argv)
   Tree_destroy(tree);
   return EXIT_SUCCESS;
 }
+
+      FILE * infptr = fopen(argv[2], "r");
+      if (infptr == NULL) { return EXIT_FAILURE; }
+      TreeNode * tree = buildTree(infptr);
+      if (tree == NULL) { return EXIT_FAILURE; }
+      int length;
+      if (fread(& length, sizeof(int), 1, infptr) != 1)
+	{ printf("wrong format\n"); }
+      // printf("length = %d\n", length);
+      unsigned char newline;
+      fread(& newline, sizeof(unsigned char), 1, infptr);
+      if (newline != '\n') 
+	{ printf("wrong format\n"); }
+      decode(infptr, argv[2], length, tree);
+      fclose (infptr);
+    }      
+  Tree_destroy(tree);

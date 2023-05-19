@@ -3,18 +3,20 @@ WARNING = -Wall -Wshadow --pedantic
 ERROR = -Wvla -Werror
 GCC = gcc -std=c99 -g $(WARNING) $(ERROR) 
 VAL = valgrind --tool=memcheck --log-file=vallog --leak-check=full --verbose
-SRCS = main.c occur.c # compress.c list.c tree.c bits.c main.c decode.c decode.c
+SRCS = main.c occur.c compress.c # list.c tree.c bits.c main.c decode.c decode.c
 OBJS = $(SRCS:%.c=%.o)
 
 huffman: $(OBJS)
 	$(GCC) $(OBJS) -o huffman
 
 test: testgen huffman
-	for pathname in inputs/*; do \
-	filename=$$(basename $$pathname); \
+	rm -f -r outputs
+	mkdir outputs
+	for inputpath in inputs/*; do \
+	filename=$$(basename $$inputpath); \
 	# echo $$name; \
 	# echo $$filename; \
-	./huffman c $$pathname $$filename outputs/; \
+	./huffman c $$inputpath outputs/ $$filename; \
 	done
 
 testgen: testgen.c

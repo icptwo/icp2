@@ -1,9 +1,6 @@
-// CH27:binary:compress:compress.h
+// CH27:compress.h
 #ifndef COMPRESS_H
 #define COMPRESS_H
-#include "tree.h"
-#include "list.h"
-#include "occur.h"
-
+int compress(char * infile, char * outfile, char * progressfile);
 #endif
 

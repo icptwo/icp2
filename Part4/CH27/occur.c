@@ -1,11 +1,10 @@
 // CH27:occur.c
 #include "occur.h"
-#include <stdio.h>
 #include <stdlib.h>
 #include <strings.h>
-static void printOccur(CharOccur * occur, int length); 
+static void printOccur(CharOccur * occur, int length, FILE * pfptr); 
 static int compareOccur(const void * p1, const void * p2);
-int countOccur(char * filename, CharOccur * occur, int length)
+int countOccur(char * filename, CharOccur * occur, int length, FILE * pfptr)
 {
   FILE * fptr = fopen(filename, "r");
   int count = 0;
@@ -29,17 +28,19 @@ int countOccur(char * filename, CharOccur * occur, int length)
     }
   fclose (fptr);
   qsort(occur, length, sizeof(CharOccur), compareOccur);
-  printOccur(occur, length);
+  printOccur(occur, length, pfptr);
   return count;
 }
-void printOccur(CharOccur * occur, int length)
+void printOccur(CharOccur * occur, int length, FILE * fptr)
 {
   int ind;
   for (ind = 0; ind < length; ind ++)
     {
       if (occur[ind].occur != 0)
-	{ printf("%d: %c %d\n", occur[ind].occur,
-		 occur[ind].ascii, occur[ind].ascii); }
+	{
+	  fprintf(fptr, "%d: %c %d\n", occur[ind].occur,
+		  occur[ind].ascii, occur[ind].ascii);
+	}
     }
 }
 static int compareOccur(const void * p1, const void * p2)
