@@ -1,16 +1,22 @@
 // CH27:main.c
+#include <stdio.h>
+#include <stdlib.h>
 #include "occur.h"
+#include "encode.h"
+#include "decode.h"
 #include "tree.h"
 int main(int argc, char * * argv)
 {
   if (argc != 3) { return EXIT_FAILURE; }
   // argv[1]: "c"- compress, "d"- decompress
-  // argv[2]: input file name
+  // argv[2]: input file path
+  // argv[3]: input file name
+  // argv[4]: output path
   // The output is stored in the file with name argv[2].out
   // This program generates intermediate files:
-  // argv[2].tree- post-order of the compression tree
-  // argv[2].book- code book
-  // argv[2].text- text mode of the file
+  // argv[3].tree- post-order of the compression tree
+  // argv[3].book- code book
+  // argv[3].text- text mode of the file
   int func = 0; // 0: invalid, 1: compress, 2: decompress
   if (strcmp(argv[1], "c") == 0) { func = 1; }
   if (strcmp(argv[1], "d") == 0) { func = 2; }

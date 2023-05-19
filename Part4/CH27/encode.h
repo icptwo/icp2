@@ -1,4 +1,4 @@
-// CH27:binary:compress:encode.h
+// CH27:encode.h
 #ifndef ENCODE_H
 #define ENCODE_H
 // encode the input (text) file

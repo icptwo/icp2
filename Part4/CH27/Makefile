@@ -3,7 +3,7 @@ WARNING = -Wall -Wshadow --pedantic
 ERROR = -Wvla -Werror
 GCC = gcc -std=c99 -g $(WARNING) $(ERROR) 
 VAL = valgrind --tool=memcheck --log-file=vallog --leak-check=full --verbose
-SRCS = compress.c list.c tree.c occur.c bits.c
+SRCS = compress.c list.c tree.c occur.c bits.c main.c decode.c decode.c
 OBJS = $(SRCS:%.c=%.o)
 
 huffman: $(OBJS)
