@@ -3,15 +3,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <strings.h>
-#define NUMCHAR 256
-int countOccur(char * filename, CharOccur * occur)
+static void printOccur(CharOccur * occur, int length); 
+static int compareOccur(const void * p1, const void * p2);
+int countOccur(char * filename, CharOccur * occur, int length)
 {
   FILE * fptr = fopen(filename, "r");
   int count = 0;
   if (fptr == NULL) { return 0; } // fopen fail
   // initialize the array elements
   int ind;
-  for (ind = 0; ind < NUMCHAR; ind ++)
+  for (ind = 0; ind < length; ind ++)
     {
       occur[ind].ascii = -1;
       occur[ind].occur = 0;
@@ -19,7 +20,7 @@ int countOccur(char * filename, CharOccur * occur)
   while (! feof (fptr))
     {
       int onechar = fgetc(fptr);
-      if ((onechar != EOF) && (onechar < NUMCHAR))
+      if ((onechar >= 0) && (onechar < length))
 	{
 	  count ++;
 	  occur[onechar].ascii = (char) onechar;
@@ -27,16 +28,18 @@ int countOccur(char * filename, CharOccur * occur)
 	}
     }
   fclose (fptr);
+  qsort(occur, length, sizeof(CharOccur), compareOccur);
+  printOccur(occur, length);
   return count;
 }
-void printOccur(CharOccur * occur)
+void printOccur(CharOccur * occur, int length)
 {
   int ind;
-  for (ind = 0; ind < NUMCHAR; ind ++)
+  for (ind = 0; ind < length; ind ++)
     {
       if (occur[ind].occur != 0)
-	{ printf("%d %c %d\n", occur[ind].ascii, occur[ind].ascii,
-		 occur[ind].occur); }
+	{ printf("%d: %c %d\n", occur[ind].occur,
+		 occur[ind].ascii, occur[ind].ascii); }
     }
 }
 static int compareOccur(const void * p1, const void * p2)
@@ -52,26 +55,3 @@ static int compareOccur(const void * p1, const void * p2)
   const char cv2 = ip2 -> ascii;
   return (cv1 - cv2);
 }
-void sortOccur(CharOccur * occur)
-{
-  qsort(occur, NUMCHAR, sizeof(CharOccur), compareOccur);
-}
-#ifdef TEST_OCCUR
-// This pair of ifdef ... endif allows the functions above to be
-// used by other programs
-// If this program is tested alone, add -DTEST_OCCUR after gcc
-int main(int argc, char * * argv)
-{
-  if (argc != 2) { return EXIT_FAILURE; } // need a file name
-  CharOccur chararr[NUMCHAR];
-  int total = countOccur(argv[1], chararr);
-  if (total != 0)
-    {
-      // printOccur(chararr);
-      sortOccur(chararr);
-      // printf("\n------------Sorted-----------\n");
-      printOccur(chararr);
-    }
-  return EXIT_SUCCESS;
-}
-#endif

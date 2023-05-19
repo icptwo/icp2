@@ -11,7 +11,5 @@ typedef struct
 // return the number of characters 
 // return 0 if cannot read from the file
 // occur is an array whose elements store the characters
-int countOccur(char * filename, CharOccur * occur);
-void printOccur(CharOccur * occur); // print the array
-void sortOccur(CharOccur * occur);  // sort the array
+int countOccur(char * filename, CharOccur * occur, int length);
 #endif

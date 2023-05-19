@@ -6,6 +6,7 @@
 #include "encode.h"
 #include "decode.h"
 #include "tree.h"
+#define NUMCHAR 256
 int main(int argc, char * * argv)
 {
   if (argc != 5) { return EXIT_FAILURE; }
@@ -34,13 +35,13 @@ int main(int argc, char * * argv)
   strcat(bookname, ".book");
   strcat(textname, ".text");
   printf("%s %s %s\n", treename, bookname, textname);
- #ifdef TEST_MAIN
   if (func == 1)
     {
       CharOccur chararr[NUMCHAR];
-      int total = countOccur(argv[2], chararr);
+      int total = countOccur(argv[2], chararr, NUMCHAR);
       if (total == 0) // nothing in the file
-	{ return EXIT_FAILURE; } 
+	{ return EXIT_FAILURE; }
+      /*
       TreeNode * tree = buildTree(chararr);
       if (tree == NULL)
 	{ return EXIT_FAILURE; }
@@ -49,7 +50,9 @@ int main(int argc, char * * argv)
       printCodeBook(codeBook);
       encode(argv[2], argv[2], tree, codeBook);
       destroyCodeBook(codeBook);
+      */
     }
+ #ifdef TEST_MAIN
   if (func == 2)
     {
       FILE * infptr = fopen(argv[2], "r");
