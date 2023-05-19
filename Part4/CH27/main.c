@@ -1,13 +1,14 @@
 // CH27:main.c
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "occur.h"
 #include "encode.h"
 #include "decode.h"
 #include "tree.h"
 int main(int argc, char * * argv)
 {
-  if (argc != 3) { return EXIT_FAILURE; }
+  if (argc != 5) { return EXIT_FAILURE; }
   // argv[1]: "c"- compress, "d"- decompress
   // argv[2]: input file path
   // argv[3]: input file name
@@ -21,16 +22,19 @@ int main(int argc, char * * argv)
   if (strcmp(argv[1], "c") == 0) { func = 1; }
   if (strcmp(argv[1], "d") == 0) { func = 2; }
   if (func == 0) { return EXIT_FAILURE;}
-  int namelength = strlen(argv[2]);
+  int namelength = strlen(argv[3]) + strlen(argv[4]);
   char * treename = malloc(sizeof(char) * (namelength + 10));
   char * bookname = malloc(sizeof(char) * (namelength + 10));
   char * textname = malloc(sizeof(char) * (namelength + 10));
-  strcpy(treename, argv[2]);
+  strcpy(treename, argv[4]);
+  strcat(treename, argv[3]);
+  strcpy(bookname, treename);
+  strcpy(textname, treename);
   strcat(treename, ".tree");
-  strcpy(bookname, argv[2]);
   strcat(bookname, ".book");
-  strcpy(textname, argv[2]);
   strcat(textname, ".text");
+  printf("%s %s %s\n", treename, bookname, textname);
+ #ifdef TEST_MAIN
   if (func == 1)
     {
       CharOccur chararr[NUMCHAR];
@@ -64,5 +68,6 @@ int main(int argc, char * * argv)
       fclose (infptr);
     }      
   Tree_destroy(tree);
+#endif  
   return EXIT_SUCCESS;
 }
