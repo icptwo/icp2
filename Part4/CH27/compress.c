@@ -147,6 +147,8 @@ static void encodeFile(char * infile, char * outfile,
   int length = ftell(inptr);
   // save the file length in the output file
   fwrite(& length, sizeof(int), 1, outptr);
+  unsigned char newline = '\n';
+  fwrite(& newline, sizeof(unsigned char), 1, outptr);
   // find each ASCII's index in the code book
   int ASCII2code[NUMCHAR] = {-1};
   int numRow = cbook -> numRow;
@@ -167,7 +169,7 @@ static void encodeFile(char * infile, char * outfile,
       if (ch != EOF)
 	{
 	  row = ASCII2code[ch];
-	  int col = 0;
+	  int col = 1;
 	  while (cbook -> codes[row][col] != -1)
 	    {
 	      writeBit(outptr, cbook -> codes[row][col],

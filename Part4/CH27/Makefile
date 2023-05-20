@@ -24,6 +24,7 @@ decompress: huffman
 	mkdir decompressed
 	for comppath in compressed/*out; do \
 	filename=$$(basename $$comppath); \
+	echo $$filename; \
 	./huffman d $$comppath decompressed/ $$filename; \
 	done
 
