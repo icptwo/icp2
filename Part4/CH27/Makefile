@@ -12,7 +12,7 @@ huffman: $(OBJS)
 compress: testgen huffman
 	rm -f -r compressed
 	mkdir compressed
-	for origpath in inputs/*; do \
+	for origpath in original/*; do \
 	filename=$$(basename $$origpath); \
 	# echo $$name; \
 	# echo $$filename; \
@@ -31,7 +31,7 @@ decompress: huffman
 testgen: testgen.c
 	$(GCC) testgen.c -o testgen
 	for num in 1 2 3 4 5 6; do \
-	./testgen cases/case$$num inputs/input$$num; \
+	./testgen cases/case$$num original/original$$num; \
 	done
 
 memory: testhuffman
@@ -42,5 +42,5 @@ memory: testhuffman
 
 clean: # remove all machine generated files
 	rm -f huffman occur testgen *.o *~ vallog
-	rm -f -r inputs/input*
+	rm -f -r original/original*
 	rm -f -r compressed decompressed
