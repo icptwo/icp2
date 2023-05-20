@@ -13,6 +13,8 @@ static void buildCodeBookHelper(TreeNode * tn, CodeBook * cbook,
 static void buildCodeBook(TreeNode * root, CodeBook *  cbook);
 static void printCodeBook(CodeBook * cbook, FILE * pfptr);
 static void destroyCodeBook(CodeBook * cbook);
+static void encodeFile(char * infile, char * outfile,
+		       CodeBook * cbook, TreeNode * tree);
 int compress(char * infile, char * outfile, char * progressfile)
 {
   // steps:
@@ -41,7 +43,9 @@ int compress(char * infile, char * outfile, char * progressfile)
   CodeBook * cbook = malloc(sizeof(CodeBook));
   buildCodeBook(tree, cbook);
   printCodeBook(cbook, pfptr);
-  // encode(argv[2], argv[2], tree, codeBook);
+  // step 5:
+  encodeFile(infile, outfile, cbook, tree);
+  Tree_destroy(tree);
   destroyCodeBook(cbook);
   return total;
 }
@@ -126,4 +130,56 @@ static void printCodeBook(CodeBook * cbook, FILE * pfptr)
 	}
       fprintf(pfptr, "\n");
     }
+}
+static void encodeFile(char * infile, char * outfile,
+		       CodeBook * cbook, TreeNode * tree)
+{
+  FILE * inptr = fopen(infile, "r");
+  if (inptr == NULL)
+    { return; }
+  FILE * outptr = fopen(outfile, "w");
+  if (outptr == NULL)
+    { return; }
+  // save the tree in the output file
+  Tree_save(tree, outptr);
+  // find the length of the file
+  fseek(inptr, 0, SEEK_END);
+  int length = ftell(inptr);
+  // save the file length in the output file
+  fwrite(& length, sizeof(int), 1, outptr);
+  // find each ASCII's index in the code book
+  int ASCII2code[NUMCHAR] = {-1};
+  int numRow = cbook -> numRow;
+  int row;
+  for (row = 0; row < numRow; row ++)
+    {
+      int ascii = cbook -> codes[row][0];
+      ASCII2code[ascii] = row;
+    }
+  // convert the letters from the input and save in the output file
+  fseek(inptr, 0, SEEK_SET); // go back to the beginning of the file
+  int count = 0;
+  unsigned char whichbit = 0;
+  unsigned char curbyte  = 0;
+  while (! feof(inptr))
+    {
+      int ch = fgetc(inptr);
+      if (ch != EOF)
+	{
+	  row = ASCII2code[ch];
+	  int col = 0;
+	  while (cbook -> codes[row][col] != -1)
+	    {
+	      writeBit(outptr, cbook -> codes[row][col],
+		       & whichbit, & curbyte);
+	      col ++;
+	    }
+	  count ++;
+	}
+    }
+  if (count != length)
+    { printf("count = %d, length = %d\n", count, length); }
+  padZero(outptr, & whichbit, & curbyte);
+  fclose (inptr);
+  fclose (outptr);
 }
