@@ -11,6 +11,7 @@ typedef struct treenode
   int  occur; 
 } TreeNode;
 TreeNode * buildCodeTree(CharOccur * chararr, int length, FILE * pfptr);
+TreeNode * restoreCodeTree(FILE * infptr, FILE * pfptr);
 TreeNode * Tree_create(char val, int occur);
 TreeNode * Tree_merge(TreeNode * tree1, TreeNode * tree2);
 void Tree_print(TreeNode * tree, int level, FILE * pfptr); 

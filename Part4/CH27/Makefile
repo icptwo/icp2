@@ -3,20 +3,28 @@ WARNING = -Wall -Wshadow --pedantic
 ERROR = -Wvla -Werror
 GCC = gcc -std=c99 -g $(WARNING) $(ERROR) 
 VAL = valgrind --tool=memcheck --log-file=vallog --leak-check=full --verbose
-SRCS = main.c occur.c compress.c list.c tree.c bits.c # decode.c decode.c
+SRCS = main.c occur.c compress.c list.c tree.c bits.c decompress.c
 OBJS = $(SRCS:%.c=%.o)
 
 huffman: $(OBJS)
 	$(GCC) $(OBJS) -o huffman
 
-test: testgen huffman
-	rm -f -r outputs
-	mkdir outputs
-	for inputpath in inputs/*; do \
-	filename=$$(basename $$inputpath); \
+compress: testgen huffman
+	rm -f -r compressed
+	mkdir compressed
+	for origpath in inputs/*; do \
+	filename=$$(basename $$origpath); \
 	# echo $$name; \
 	# echo $$filename; \
-	./huffman c $$inputpath outputs/ $$filename; \
+	./huffman c $$origpath compressed/ $$filename; \
+	done
+
+decompress: huffman
+	rm -f -r decompressed
+	mkdir decompressed
+	for comppath in compressed/*out; do \
+	filename=$$(basename $$comppath); \
+	./huffman d $$comppath decompressed/ $$filename; \
 	done
 
 testgen: testgen.c
@@ -34,4 +42,4 @@ memory: testhuffman
 clean: # remove all machine generated files
 	rm -f huffman occur testgen *.o *~ vallog
 	rm -f -r inputs/input*
-	rm -f -r outputs
+	rm -f -r compressed decompressed

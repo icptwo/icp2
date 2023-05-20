@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "compress.h"
+#include "decompress.h"
 // #include "occur.h"
 // #include "encode.h"
 // #include "decode.h"
@@ -28,17 +29,11 @@ int main(int argc, char * * argv)
   strcpy(progressname, outputname);
   strcat(outputname, ".out");
   strcat(progressname, ".progress");
-  // FILE * pfptr = fopen(progressname, "w");
-  // if (pfptr == NULL) { return EXIT_FAILURE; }
-  // printf("fopen(%s)\n", progressname);
   int rtv; // return value
   if (func == 1)
     { rtv = compress(argv[2], outputname, progressname); }
-  /*
   if (func == 2)
     { rtv = decompress(argv[2], outputname, progressname); }
-  */
-  // fclose (pfptr);
   free (outputname);
   free (progressname);
   if (rtv == 0) { return EXIT_FAILURE; }

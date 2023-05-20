@@ -3,6 +3,7 @@
 #include "bits.h"
 #include "list.h"
 #include <stdlib.h>
+#include <stdbool.h>
 TreeNode * buildCodeTree(CharOccur * chararr, int length, FILE * pfptr)
 {
   ListNode * head = NULL;
@@ -119,4 +120,52 @@ void Tree_save(TreeNode * tree, FILE * fptr)
   writeBit(fptr, 0, & whichbit, & curbyte);
   padZero(fptr, & whichbit, & curbyte);
   writeByte(fptr, '\n', & whichbit, & curbyte);
+}
+TreeNode * restoreCodeTree(FILE * infptr, FILE * pfptr)
+{
+  bool finishedtree = false;
+  int numOne  = 0;
+  int numZero = 0;
+  unsigned char bit;
+  unsigned char byte;
+  unsigned char whichbit = 0;
+  unsigned char curbyte  = 0;
+  ListNode * head = NULL;
+  while (finishedtree == false)
+    {
+      readBit(infptr, & bit, & whichbit, & curbyte);
+      if (bit == 1)
+	{
+	  numOne ++;
+	  readByte(infptr, & byte, & whichbit, & curbyte);
+	  // printf("1%c\n", byte);
+	  TreeNode * tn = Tree_create(byte, -1); // occur does not matter
+	  head = List_insertTree(head, tn);
+	}
+      if (bit == 0)
+	{
+	  numZero ++;
+	  if ((head != NULL) && ((head -> next) != NULL))
+	    {
+	      // merge the most recent two tree nodes
+	      TreeNode * tree1 = head -> tnptr;
+	      TreeNode * tree2 = (head -> next) -> tnptr;
+	      TreeNode * tp  = Tree_merge(tree2, tree1); // note the order
+	      ListNode * p = head;
+	      ListNode * q = head -> next;
+	      head = List_insertTree(q -> next, tp);
+	      free (p);
+	      free (q);
+	    }
+	}
+      if (numOne == numZero)
+	{ finishedtree = true; }
+    }
+  TreeNode * tree = head -> tnptr;
+  free (head);
+  removePad(infptr, & whichbit, & curbyte);
+  readByte(infptr, & byte, & whichbit, & curbyte); // should be '\n'
+  if (byte != '\n')
+    { printf("wrong format\n"); }
+  return tree;
 }
