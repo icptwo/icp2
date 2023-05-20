@@ -277,36 +277,6 @@ int decode(char * infile, char * outfile)
   fclose(outfptr);
   return 1;
 }
-TreeNode * buildTree(CharOccur * chararr)
-{
-  ListNode * head = NULL;
-  int ind;
-  // build the initial tree
-  for (ind = 0; ind < NUMCHAR; ind ++)
-    {
-      CharOccur * optr = & chararr[ind];
-      if ((optr -> occur) != 0)
-	{ head = List_insertChar(head, optr -> ascii, optr -> occur); }
-    }
-  List_print(head);
-  // printf("----------------\n");
-  // merge the trees
-  while ((head -> next) != NULL)
-    {
-      TreeNode * tree1 = head -> tnptr;
-      TreeNode * tree2 = (head -> next) -> tnptr;
-      TreeNode * tp  = Tree_merge(tree1, tree2);
-      ListNode * p = head;
-      ListNode * q = head -> next;
-      head = List_insertTree(q -> next, tp);
-      free (p);
-      free (q);
-    }
-  List_print(head);
-  TreeNode * tree = head -> tnptr;
-  free (head);
-  return tree;
-}
 void codeBookHelper(TreeNode * tree, char * * codeBook,
 		    char * code, int ind)
 {

@@ -1,4 +1,4 @@
-// CH27:binary:compress:list.c
+// CH27:list.c
 #include "list.h"
 #include <stdlib.h>
 static ListNode * ListNode_create(TreeNode * tn)
@@ -8,12 +8,12 @@ static ListNode * ListNode_create(TreeNode * tn)
   ln -> tnptr = tn;
   return ln;
 }
-
 ListNode * List_insertTree(ListNode * head, TreeNode * tn)
 {
   ListNode * ln = ListNode_create(tn);
-  if (head == NULL) { return ln; } // empty list, create first list node
-  // otherwise insert in the ascending order
+  if (head == NULL) // empty list, create first list node
+    { return ln; } 
+  // insert in the ascending order
   int occur = tn -> occur;
   if (occur < ((head -> tnptr) -> occur)) // first
     {
@@ -34,18 +34,16 @@ ListNode * List_insertTree(ListNode * head, TreeNode * tn)
   ln -> next = q; 
   return head;  
 }
-				   
 ListNode * List_insertChar(ListNode * head, char val, int occur)
 {
   TreeNode * tn = Tree_create(val, occur);
   return List_insertTree(head, tn);
 }
-
-void List_print(ListNode * head)
+void List_print(ListNode * head, FILE * pfptr)
 {
   if (head == NULL) { return; }
-  Tree_print(head -> tnptr, 0);
-  List_print(head -> next);
+  Tree_print(head -> tnptr, 0, pfptr);
+  List_print(head -> next, pfptr);
 }
 
 void List_destroy(ListNode * head)

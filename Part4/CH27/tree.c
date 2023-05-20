@@ -1,7 +1,39 @@
-// CH27:binary:compress:tree.c
+// CH27:tree.c
 #include "tree.h"
 #include "bits.h"
+#include "list.h"
 #include <stdlib.h>
+TreeNode * buildCodeTree(CharOccur * chararr, int length, FILE * pfptr)
+{
+  ListNode * head = NULL;
+  int ind;
+  // build the list with ascending order
+  for (ind = 0; ind < length; ind ++)
+    {
+      CharOccur * optr = & chararr[ind];
+      if ((optr -> occur) != 0)
+	{
+	  head = List_insertChar(head, optr -> ascii, optr -> occur);
+	}
+    }
+  List_print(head, pfptr);
+  // merge the nodes and build the tree
+  while ((head -> next) != NULL)
+    {
+      TreeNode * tree1 = head -> tnptr;
+      TreeNode * tree2 = (head -> next) -> tnptr;
+      TreeNode * tp  = Tree_merge(tree1, tree2);
+      ListNode * p = head;
+      ListNode * q = head -> next;
+      head = List_insertTree(q -> next, tp);
+      free (p);
+      free (q);
+    }
+  List_print(head, pfptr);
+  TreeNode * tree = head -> tnptr;
+  free (head); // list no longer needed
+  return tree;
+}
 TreeNode * Tree_create(char val, int occur)
 {
   TreeNode * tree = malloc(sizeof(TreeNode));
@@ -12,19 +44,22 @@ TreeNode * Tree_create(char val, int occur)
   return tree;
 }
 // post-order
-void Tree_print(TreeNode * tree, int level)
+void Tree_print(TreeNode * tree, int level, FILE * pfptr)
 {
   if (tree == NULL) { return; }
   TreeNode * lc = tree -> left;  // left child
   TreeNode * rc = tree -> right; // right child
-  Tree_print(lc, level + 1);
-  Tree_print(rc, level + 1);
+  Tree_print(lc, level + 1, pfptr);
+  Tree_print(rc, level + 1, pfptr);
   int depth;
-  for (depth = 0; depth < level; depth ++) { printf("    "); }
-  printf("occur = %d ", tree -> occur);
+  for (depth = 0; depth < level; depth ++)
+    { fprintf(pfptr, "    "); }
+  fprintf(pfptr, "occur = %d ", tree -> occur);
   if ((lc == NULL) && (rc == NULL)) // leaf node
-    { printf("ascii = %d, '%c'", tree -> ascii, tree -> ascii); } 
-  printf("\n");
+    {
+      fprintf(pfptr, "ascii = %d, '%c'", tree -> ascii, tree -> ascii);
+    } 
+  fprintf(pfptr, "\n");
 }
 void Tree_destroy(TreeNode * tree)
 {
@@ -47,6 +82,17 @@ int Tree_height(TreeNode * tree)
   int right = Tree_height(tree -> right);
   if (left > right) { return (left + 1); }
   return (right + 1);
+}
+int Tree_leaf(TreeNode * tree)
+{
+  if (tree == NULL)
+  { return 0; }
+  if (((tree -> left) == NULL) &&
+      ((tree -> right) == NULL))
+    { return 1; }
+  int numLeft = Tree_leaf(tree -> left);
+  int numRight = Tree_leaf(tree -> right);
+  return (numLeft + numRight);
 }
 static void Tree_saveHelper(TreeNode * tree, FILE * fptr,
 			    unsigned char * whichbit,

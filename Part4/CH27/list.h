@@ -1,4 +1,4 @@
-// CH27:binary:compress:list.h
+// CH27:list.h
 #ifndef LIST_H
 #define LIST_H
 #include "tree.h"
@@ -11,6 +11,6 @@ typedef struct listnode
 } ListNode;
 ListNode * List_insertChar(ListNode *, char, int);
 ListNode * List_insertTree(ListNode *, TreeNode * tp);
-void List_print(ListNode * head);
+void List_print(ListNode * head, FILE * pfptr);
 void List_destroy(ListNode * head);
 #endif

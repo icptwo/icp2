@@ -2,9 +2,7 @@
 #include "occur.h"
 #include <stdlib.h>
 #include <strings.h>
-static void printOccur(CharOccur * occur, int length, FILE * pfptr); 
-static int compareOccur(const void * p1, const void * p2);
-int countOccur(char * filename, CharOccur * occur, int length, FILE * pfptr)
+int countOccur(char * filename, CharOccur * occur, int length)
 {
   FILE * fptr = fopen(filename, "r");
   int count = 0;
@@ -27,8 +25,6 @@ int countOccur(char * filename, CharOccur * occur, int length, FILE * pfptr)
 	}
     }
   fclose (fptr);
-  qsort(occur, length, sizeof(CharOccur), compareOccur);
-  printOccur(occur, length, pfptr);
   return count;
 }
 void printOccur(CharOccur * occur, int length, FILE * fptr)
@@ -43,7 +39,7 @@ void printOccur(CharOccur * occur, int length, FILE * fptr)
 	}
     }
 }
-static int compareOccur(const void * p1, const void * p2)
+int compareOccur(const void * p1, const void * p2)
 {
   const CharOccur * ip1 = (const CharOccur *) p1;
   const CharOccur * ip2 = (const CharOccur *) p2;
