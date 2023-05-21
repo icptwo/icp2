@@ -1,13 +1,13 @@
 // CH27:bits.c
 #include "bits.h"
+int writeBit(FILE * fptr, unsigned char bit, 
+	     unsigned char * whichbit, unsigned char * curbyte)
 // * whichbit indicates which bit this is written to
 // (0 means leftmost, 7 means rightmost) curbyte is the current byte
 // When * whichbit is zero, curbyte is reset
 // When * whichbit is 7, this byte is written to the file
 // The function returns 1 if a byte is written to the file
 // returns 0 if no byte is written, -1 if write and fails
-int writeBit(FILE * fptr, unsigned char bit, 
-	     unsigned char * whichbit, unsigned char * curbyte)
 {
   if ((* whichbit) == 0) { * curbyte = 0; } // reset the byte
   // shift the bit to the correct location

@@ -1,5 +1,4 @@
 // CH27:compress.c
-// #include "compress.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -108,10 +107,8 @@ static void destroyCodeBook(CodeBook * cbook)
   int ind;
   int numRow = cbook -> numRow;
   for (ind = 0; ind < numRow; ind ++)
-    {
-      if ((cbook -> codes[ind]) != NULL)
-	{ free (cbook -> codes[ind]); }
-    }
+    { free (cbook -> codes[ind]); }
+  free (cbook -> codes);
   free (cbook);
 }
 static void printCodeBook(CodeBook * cbook, FILE * pfptr)

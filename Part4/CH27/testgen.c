@@ -1,4 +1,4 @@
-// CH27:convert.c
+// CH27:testgen.c
 // convert a test case from letter-occurrence pair to print the letters
 // for example, if input is a 23, this program prints a 23 times
 #include <stdio.h>
@@ -15,7 +15,8 @@ int main(int argc, char * * argv)
   while (fscanf(inptr, "%c %d\n", & val, & count) == 2)
     {
       // printf("%c %d\n", val, count);
-      if (occur[(int) val] != 0) { printf("Repeated character %c\n", val); }
+      if (occur[(int) val] != 0)
+	{ printf("Repeated character %c\n", val); }
       occur[(int) val] = count;
     }
   fclose(inptr);

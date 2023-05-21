@@ -4,10 +4,6 @@
 #include <string.h>
 #include "compress.h"
 #include "decompress.h"
-// #include "occur.h"
-// #include "encode.h"
-// #include "decode.h"
-// #include "tree.h"
 int main(int argc, char * * argv)
 {
   if (argc != 5) { return EXIT_FAILURE; }

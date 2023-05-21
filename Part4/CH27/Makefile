@@ -2,7 +2,7 @@
 WARNING = -Wall -Wshadow --pedantic
 ERROR = -Wvla -Werror
 GCC = gcc -std=c99 -g $(WARNING) $(ERROR) 
-VAL = valgrind --tool=memcheck --log-file=vallog --leak-check=full --verbose
+VAL = valgrind --tool=memcheck --log-file=vlog --leak-check=full --verbose
 SRCS = main.c occur.c compress.c list.c tree.c bits.c decompress.c
 OBJS = $(SRCS:%.c=%.o)
 
@@ -14,8 +14,6 @@ compress: testgen huffman
 	mkdir compressed
 	for origpath in original/*; do \
 	filename=$$(basename $$origpath); \
-	# echo $$name; \
-	# echo $$filename; \
 	./huffman c $$origpath compressed/ $$filename; \
 	done
 
@@ -37,16 +35,19 @@ decompress: compress
 testgen: testgen.c
 	$(GCC) testgen.c -o testgen
 	for num in 1 2 3 4 5 6; do \
-	./testgen cases/case$$num original/original$$num; \
+	./testgen cases/case$$num original/input$$num; \
 	done
 
-memory: testhuffman
-	$(VAL) ./huffman input2 output2 
+memory1: huffman
+	$(VAL) ./huffman c original/King1963 compressed/ King1963
+
+memory2: huffman
+	$(VAL) ./huffman d compressed/King1963.cmp restored/ King1963.cmp
 
 .c.o: 
 	$(GCC) $(TESTFALGS) -c $*.c 
 
 clean: # remove all machine generated files
 	rm -f huffman occur testgen *.o *~ vallog
-	rm -f -r original/original*
-	rm -f -r compressed restored
+	rm -f -r original/input*
+	rm -f -r compressed restored vlog
