@@ -153,7 +153,7 @@ TreeNode * restoreCodeTree(FILE * infptr, FILE * pfptr)
 	      // merge the most recent two tree nodes
 	      TreeNode * tree1 = head -> tnptr;
 	      TreeNode * tree2 = (head -> next) -> tnptr;
-	      TreeNode * tp  = Tree_merge(tree1, tree2); // note the order
+	      TreeNode * tp  = Tree_merge(tree2, tree1); // note the order
 	      ListNode * p = head;
 	      ListNode * q = head -> next;
 	      head = List_insertTree(q -> next, tp, false);

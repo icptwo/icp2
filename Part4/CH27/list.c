@@ -17,7 +17,7 @@ ListNode * List_insertTree(ListNode * head, TreeNode * tn, bool order)
     { return ln; } 
   // insert in the ascending order
   int occur = tn -> occur;
-  if ((order == false) &&
+  if ((order == false) ||
       (occur < ((head -> tnptr) -> occur))) // at the beginning
     {
       ln -> next = head;
