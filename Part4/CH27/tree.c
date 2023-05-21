@@ -26,7 +26,7 @@ TreeNode * buildCodeTree(CharOccur * chararr, int length, FILE * pfptr)
       TreeNode * tp  = Tree_merge(tree1, tree2);
       ListNode * p = head;
       ListNode * q = head -> next;
-      head = List_insertTree(q -> next, tp);
+      head = List_insertTree(q -> next, tp, true);
       free (p);
       free (q);
     }
@@ -71,7 +71,8 @@ void Tree_destroy(TreeNode * tree)
 }
 TreeNode * Tree_merge(TreeNode * tree1, TreeNode * tree2)
 {
-  TreeNode * parent = Tree_create(0, (tree1 -> occur) + (tree2 -> occur));
+  TreeNode * parent =
+    Tree_create(0, (tree1 -> occur) + (tree2 -> occur));
   parent -> left = tree1;
   parent -> right = tree2;
   return parent;
@@ -140,20 +141,22 @@ TreeNode * restoreCodeTree(FILE * infptr, FILE * pfptr)
 	  readByte(infptr, & byte, & whichbit, & curbyte);
 	  // printf("1%c\n", byte);
 	  TreeNode * tn = Tree_create(byte, -1); // occur does not matter
-	  head = List_insertTree(head, tn);
+	  fprintf(pfptr, "1%c", byte);
+	  head = List_insertTree(head, tn, false);
 	}
       if (bit == 0)
 	{
 	  numZero ++;
+	  fprintf(pfptr, "0");
 	  if ((head != NULL) && ((head -> next) != NULL))
 	    {
 	      // merge the most recent two tree nodes
 	      TreeNode * tree1 = head -> tnptr;
 	      TreeNode * tree2 = (head -> next) -> tnptr;
-	      TreeNode * tp  = Tree_merge(tree2, tree1); // note the order
+	      TreeNode * tp  = Tree_merge(tree1, tree2); // note the order
 	      ListNode * p = head;
 	      ListNode * q = head -> next;
-	      head = List_insertTree(q -> next, tp);
+	      head = List_insertTree(q -> next, tp, false);
 	      free (p);
 	      free (q);
 	    }
@@ -167,5 +170,6 @@ TreeNode * restoreCodeTree(FILE * infptr, FILE * pfptr)
   readByte(infptr, & byte, & whichbit, & curbyte); // should be '\n'
   if (byte != '\n')
     { printf("wrong format\n"); }
+  fprintf(pfptr, "\n");
   return tree;
 }

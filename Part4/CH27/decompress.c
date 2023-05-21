@@ -22,6 +22,7 @@ int decompress(char * infile, char * outfile, char * progressfile)
   int length;
   if (fread(& length, sizeof(int), 1, infptr) != 1)
     { fprintf(pfptr, "wrong format\n"); }
+  fprintf(pfptr, "%d\n", length);
   unsigned char newline;
   if (fread(& newline, sizeof(unsigned char), 1, infptr) != 1)
     { fprintf(pfptr, "wrong format\n"); }

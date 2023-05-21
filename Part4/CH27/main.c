@@ -27,13 +27,18 @@ int main(int argc, char * * argv)
   strcpy(outputname, argv[3]);
   strcat(outputname, argv[4]);
   strcpy(progressname, outputname);
-  strcat(outputname, ".out");
   strcat(progressname, ".progress");
   int rtv; // return value
   if (func == 1)
-    { rtv = compress(argv[2], outputname, progressname); }
+    {
+      strcat(outputname, ".cmp"); // compressed file
+      rtv = compress(argv[2], outputname, progressname);
+    }
   if (func == 2)
-    { rtv = decompress(argv[2], outputname, progressname); }
+    {
+      strcat(outputname, ".res"); // restored text file
+      rtv = decompress(argv[2], outputname, progressname);
+    }
   free (outputname);
   free (progressname);
   if (rtv == 0) { return EXIT_FAILURE; }

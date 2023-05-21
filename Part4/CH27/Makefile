@@ -19,13 +19,19 @@ compress: testgen huffman
 	./huffman c $$origpath compressed/ $$filename; \
 	done
 
-decompress: huffman
-	rm -f -r decompressed
-	mkdir decompressed
-	for comppath in compressed/*out; do \
+decompress: compress
+	rm -f -r restored
+	mkdir restored
+	for comppath in compressed/*cmp; do \
 	filename=$$(basename $$comppath); \
 	echo $$filename; \
-	./huffman d $$comppath decompressed/ $$filename; \
+	./huffman d $$comppath restored/ $$filename; \
+	done
+	# compare the original with the decompressed files
+	for origpath in original/*; do \
+	filename=$$(basename $$origpath); \
+	echo $$filename; \
+	diff $$origpath restored/$$filename.cmp.res; \
 	done
 
 testgen: testgen.c
@@ -43,4 +49,4 @@ memory: testhuffman
 clean: # remove all machine generated files
 	rm -f huffman occur testgen *.o *~ vallog
 	rm -f -r original/original*
-	rm -f -r compressed decompressed
+	rm -f -r compressed restored

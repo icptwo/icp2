@@ -8,14 +8,17 @@ static ListNode * ListNode_create(TreeNode * tn)
   ln -> tnptr = tn;
   return ln;
 }
-ListNode * List_insertTree(ListNode * head, TreeNode * tn)
+ListNode * List_insertTree(ListNode * head, TreeNode * tn, bool order)
+// if order is true, insert in ascending order
+// if order is false, insert at the beginning
 {
   ListNode * ln = ListNode_create(tn);
   if (head == NULL) // empty list, create first list node
     { return ln; } 
   // insert in the ascending order
   int occur = tn -> occur;
-  if (occur < ((head -> tnptr) -> occur)) // first
+  if ((order == false) &&
+      (occur < ((head -> tnptr) -> occur))) // at the beginning
     {
       ln -> next = head;
       return ln;
@@ -37,7 +40,7 @@ ListNode * List_insertTree(ListNode * head, TreeNode * tn)
 ListNode * List_insertChar(ListNode * head, char val, int occur)
 {
   TreeNode * tn = Tree_create(val, occur);
-  return List_insertTree(head, tn);
+  return List_insertTree(head, tn, true);
 }
 void List_print(ListNode * head, FILE * pfptr)
 {
