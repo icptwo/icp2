@@ -34,7 +34,7 @@ decompress: compress
 
 testgen: testgen.c
 	$(GCC) testgen.c -o testgen
-	for num in 1 2 3 4 5 6; do \
+	for num in 1 2 3 4 5 6 7 8; do \
 	./testgen cases/case$$num original/input$$num; \
 	done
 

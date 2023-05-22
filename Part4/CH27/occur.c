@@ -47,7 +47,7 @@ int compareOccur(const void * p1, const void * p2)
   const int iv2 = ip2 -> occur;
   if (iv1 != iv2)
     { return (iv1 - iv2); }
-  // same occurrences, ordered by the ASCII values
+  // if same occurrences, ordered by the ASCII values
   const char cv1 = ip1 -> ascii;
   const char cv2 = ip2 -> ascii;
   return (cv1 - cv2);
