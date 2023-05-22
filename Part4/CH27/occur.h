@@ -6,7 +6,7 @@
 #define NUMCHAR 256
 typedef struct
 {
-  char ascii; // ASCII value
+  unsigned char ascii; // ASCII value
   int occur; // how many times does this ASCII value occurs
 } CharOccur;
 // count the occurrencies of the characters

@@ -61,7 +61,6 @@ int readBit(FILE * fptr, unsigned char * bit,
   // shift the bit to the correct location
   unsigned char temp = (* curbyte) >> (7 - (* whichbit));
   temp = temp & 0X01; // get only 1 bit, ignore the others
-  // printf("readBit = %c\n", temp + '0');
   * whichbit = ((* whichbit) + 1) % 8;   // increase by 1 for the next bit
   * bit = temp;
   return 1;
