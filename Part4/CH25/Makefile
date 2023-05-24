@@ -10,7 +10,6 @@ sudoku: $(OBJS)
 
 network: server.c
 	$(GCC) server.c -o server
-	$(GCC) client.c -o client
 
 transfer: transferserver.c transferclient.c
 	$(GCC) transferclient.c -o transferclient
