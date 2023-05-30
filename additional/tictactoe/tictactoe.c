@@ -2,6 +2,47 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include "tictactoe.h"
+void initBoard(Board * oneboard)
+{
+  int ind;
+  for (ind = 0; ind < NUMCELL; ind ++)
+    { oneboard -> cells[ind] = '.'; }
+}
+void printBoard(Board * oneboard, int dim)
+{
+  if (dim == 1)
+    {
+      int ind;
+      for (ind = 0; ind < NUMCELL; ind ++)
+	{ printf("%c", oneboard -> cells[ind]); }
+      printf("\n");
+      return;
+    }
+  if (dim == 2)
+    {
+      int ind = 0;
+      int row;
+      int col;
+      for (row = 0; row < NUMSIDE; row ++)
+	{
+	  for (col = 0; col < NUMSIDE; col ++)
+	    {
+	      printf("%c", oneboard -> cells[ind]);
+	      ind ++;
+	    }
+	  printf("\n");
+	}
+      printf("\n");
+      return;
+    }
+}
+
+int generateBoard(Board * allboard, int choice)
+{
+  return 1;
+}
+
+#ifdef DEBUG
 void Board_print(Board * brhead)
 {
   Board * br;
@@ -307,3 +348,4 @@ void Graph_addEdge(Graph * brgh)
 	}
     }  
 }
+#endif
