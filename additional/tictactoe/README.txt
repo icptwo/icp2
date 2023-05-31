@@ -128,6 +128,8 @@ two diﬀerent boards. Also, the players continue playing until all nine
 cells areﬁlled even though the winner has been decided, or draw is
 certain.
 
+Answer: 
+
 This question can be translated into the following: The board has 9
 cells and n cells are ﬁlled by either X or O (obviously, n is between
 1 and 9). How many ways can these 9 cells beﬁlled?  Suppose among then
@@ -174,15 +176,8 @@ Figure 1 (h) will be printed as
 
 XOXOXXO-O
 
-Question 3
 
-Stop when the winner has already been decided or draw is
-unavoidable. For example, Figure 1 (e)-(f) should have no additional
-cells to fill.
+Answer:
 
-Question 4
-
-Remove rotation or mirror equivalent.  For example, Figure 2 (a)-(d)
-should appear only once.
-
+Please see the source code.
 
