@@ -1,0 +1,12 @@
+# CH05:Makefile2
+
+GCC = gcc
+CFLAGS = -g -Wall -Wshadow
+CFLAGS += -fsanitize=address -static-libasan
+
+wrongindex: wrongindex.c
+	$(GCC) $(CFLAGS) $(FLAGS2) wrongindex.c -o wrongindex
+	./wrongindex
+
+clean:
+	/bin/rm -f *.o wrongindex *~ *bak output*  

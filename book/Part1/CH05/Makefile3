@@ -1,0 +1,9 @@
+# CH05:Makefile3
+GCC = gcc -g -Wall -Wshadow -fprofile-arcs -ftest-coverage
+coverge: coverage.c
+	$(GCC) coverage.c -o coverage
+	./coverage
+	gcov coverage.c
+	grep "##" coverage.c.gcov
+clean:
+	rm -f *.gcno coverage *gcda

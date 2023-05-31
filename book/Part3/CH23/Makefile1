@@ -1,0 +1,9 @@
+# CH23:Makefile1
+# Makefile for testsquare
+GPP = g++ -g
+LIBS = -lgtest -pthread 
+test: testsquare.cpp
+	$(GPP) square.cpp testsquare.cpp -o testsquare $(LIBS)
+	./testsquare 
+clean:
+	/bin/rm -f *.o a.out testsquare
