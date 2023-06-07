@@ -2,7 +2,7 @@
 // count the occurrence of a substring
 // argv[1] is the longer string
 // argv[2] is the shorter string
-// argv[1] may contain space if the string enclosed by " "
+// argv[1] may contain space if it is enclosed by " "
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

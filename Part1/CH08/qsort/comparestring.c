@@ -10,4 +10,3 @@ int comparestring(const void *arg1, const void *arg2)
   const char * str2 = * ptr2;
   return strcmp(str1, str2);
 }
-

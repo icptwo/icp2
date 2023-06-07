@@ -4,7 +4,7 @@
 int main(int argc, char * * argv)
 {
   int v = 55;
-  printf("%d\n", v); // C treats integer and character differently
-  printf("%c\n", v);
+  printf("%d\n", v); // 55 as integer 
+  printf("%c\n", v); // '7' as character
   return EXIT_SUCCESS;
 }

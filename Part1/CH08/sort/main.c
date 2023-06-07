@@ -19,4 +19,3 @@ int main(int argc, char * * argv)
   free (arr);
   return EXIT_SUCCESS;
 }
-

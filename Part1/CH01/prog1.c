@@ -1,6 +1,6 @@
 // CH01:prog1.c
-#include <stdio.h>
-#include <stdlib.h>
+#include <stdio.h> // needed for printf
+#include <stdlib.h> // needed for EXIT_SUCCESS
 int main(int argc, char * * argv)
 {
   int a = 5;
