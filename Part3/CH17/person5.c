@@ -14,11 +14,11 @@ Person * Person_assign(Person * p1, Person * p2)
 {
   // p1 is already a Person object, make its attribute 
   // the same as p2's attributes (deep copy)
-  free(p1 -> name);
+  free(p1 -> name); // need to free first because strdup calls malloc
   p1 -> year = p2 -> year;
   p1 -> month = p2 -> month;
   p1 -> date = p2 -> date;
-  p1 -> name = strdup(p2 -> name);
+  p1 -> name = strdup(p2 -> name); 
   return p1;
 }
 int main(int argc, char * argv[])

@@ -17,6 +17,5 @@ Person * Person_construct(int y, int m, int d, char * n)
       free (p);
       return NULL;
     }
-  strcpy(p -> name, n);
   return p;
 }

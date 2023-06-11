@@ -17,12 +17,10 @@ int main(int argc, char * argv[])
   p2.name = strdup("Bob");
   Person_print(& p1);
   Person_print(& p2);
-  p2 = p1;
+  p2 = p1; // p1 and p2 store the same address
   Person_print(& p1);
   Person_print(& p2);
   free (p1.name);
-  free (p2.name);
+  free (p2.name); // free the same memory twice
   return EXIT_SUCCESS;
 }
-
-
