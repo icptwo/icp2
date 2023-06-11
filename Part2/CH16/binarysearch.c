@@ -10,9 +10,9 @@ static int binarySearchHelp(int * arr, int low, int high, int key)
   if (low > high) // array has no element
     { return -1; } 
   int ind = (low + high) / 2;
-  if (arr[ind] == key)
+  if (arr[ind] == key) // found
     { return ind; }
-  if (arr[ind] > key)
+  if (arr[ind] > key) // discard arr[ind] to arr[high]
     { return binarySearchHelp(arr, low, ind - 1, key); }
   return binarySearchHelp(arr, ind + 1, high, key);
 }

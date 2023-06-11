@@ -19,7 +19,7 @@ static void quickSortHelp(int * arr, int first, int last)
   int high = last;
   while (low < high)
     {
-      while ((low < last) && (arr[low] <= pivot))
+      while ((low < last) && (arr[low] <= pivot)) // <=, not <
 	{
 	  // <= so that low will increment when arr[low] is the same
 	  // as pivot, using < will stop incrementing low when
@@ -27,7 +27,7 @@ static void quickSortHelp(int * arr, int first, int last)
 	  // may not stop
 	  low ++;
 	}
-      while ((first < high) && (arr[high] > pivot))
+      while ((first < high) && (arr[high] > pivot)) // >, not >= 
 	{ high --; }
       if (low < high)
 	{ swap (& arr[low], & arr[high]);	}

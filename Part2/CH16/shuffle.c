@@ -127,4 +127,3 @@ void shuffle(CardDeck origDeck)
   free (leftDeck);
   free (rightDeck);
 }
-

@@ -7,11 +7,11 @@ int f(int n)
 {
   int i;
   int sum = 0;
-  if (n == 1) { return 1; } //Base case: only one way to partition 1
+  if (n == 1) { return 1; } // Base case: only one way to partition 1
   // Recursive case 
   for (i = 1; i < n; i ++)
     { sum += f(n - i); }
-  sum ++;
+  sum ++; // partition n itself
   return sum;
 }
 int main(int argc, char * argv[])
