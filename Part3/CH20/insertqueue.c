@@ -5,7 +5,7 @@ Node * List_insert(Node * head, int val)
     { return Node_construct(val); }
   Node * p = head -> next;
   // find the last node
-  whie ((p -> next) != NULL)
+  whie ((p -> next) != NULL) // not (p != NULL)
     { p = p -> next; }
   p -> next = Node_construct(val);
   return head;   
