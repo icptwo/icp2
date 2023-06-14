@@ -20,7 +20,7 @@ int main (int argc, char *argv[])
       printf("ERROR; pthread_create() returns %d\n", rtv);
       return EXIT_FAILURE;
     }
-  rtv = pthread_join(second, NULL);
+  rtv = pthread_join(second, NULL); 
   if (rtv != 0)
     {
       printf("ERROR; pthread_join() returns %d\n", rtv);

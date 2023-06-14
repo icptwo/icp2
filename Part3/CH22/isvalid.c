@@ -9,7 +9,7 @@ int isValidSet(int * setA, int sizeA)
   for (ind1 = 0; ind1 < sizeA; ind1 ++)
     {
       if (setA[ind1] <= 0)
-	{ return 0;	}
+	{ return 0; }
       for (ind2 = ind1 + 1; ind2 < sizeA; ind2 ++)
 	{
 	  if (setA[ind1] == setA[ind2])

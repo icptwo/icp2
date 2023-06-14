@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #define NUMBER_THREAD 16
-void * threadfunc(void *intarg)
+void * tfunc(void *intarg)
 {
   int * intptr = (int *) intarg;
   while (1)
@@ -27,7 +27,7 @@ int main (int argc, char *argv[])
   int intarg = 0;
   for (ind = 0; ind < NUMBER_THREAD; ind ++)
     {
-      rtv = pthread_create(& tid[ind], NULL, threadfunc, (void *) & intarg);
+      rtv = pthread_create(& tid[ind], NULL, tfunc, (void *) & intarg);
       if (rtv != 0)
 	{
 	  printf("pthread_create() fail %d\n", rtv);

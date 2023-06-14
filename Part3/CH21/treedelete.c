@@ -3,7 +3,7 @@
 #include <stdlib.h>
 TreeNode * Tree_delete(TreeNode * tn, int val)
 {
-  if (tn == NULL)
+  if (tn == NULL) // no node, cannot delete anything
     { return NULL; }
   if (val < (tn -> value))
     {

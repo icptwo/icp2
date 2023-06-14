@@ -10,7 +10,7 @@ int subsetEqual(int * setA, int sizeA, int kval, unsigned int code)
       if ((code % 2) == 1)
 	{ sum += setA[ind]; }
       ind ++;
-      code >>= 1;
+      code >>= 1; // shift right by 1 means divided by 2
     }
   if (sum == kval)
     {

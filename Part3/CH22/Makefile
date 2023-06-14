@@ -47,7 +47,7 @@ testgen: testgen.c
 	for case in 5 10 15 20 ; do \
 	./testgen  $$case 1 1 > inputs/validyes$$case; \
 	./testgen  $$case 1 0 > inputs/validno$$case; \
-	./testgen  $$case  0 0 > inputs/invalid$$case; \
+	./testgen  $$case 0 0 > inputs/invalid$$case; \
 	done
 
 .c.o: 

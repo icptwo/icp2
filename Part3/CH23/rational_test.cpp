@@ -53,14 +53,14 @@ TEST(RationalTest, Compare)
   rational_init(&r2, 300, 400);
   rational_init(&r3, 3, 4);
   int result;
-  rational_compare(&r1, &r2, &result); // 1/2 < 3/4 => -1
+  rational_compare(&r1, &r2, &result); // 1/2 < 3/4, result is -1
   EXPECT_LT(result, 0);
   rational_compare(&r3, &r2, &result); // result is -1
   EXPECT_EQ(result, 0);
   rational_init(&r2, 3, 0); // invalid
-  rational_compare(&r3, &r2, &result); // result shoud be 2
+  rational_compare(&r3, &r2, &result); // result is 2
   EXPECT_GT(result, 1);  
-  rational_from_rational(&r2, &r3); // r2 same as r3, => 0
+  rational_from_rational(&r2, &r3); // r2 same as r3, result is 0
   rational_compare(&r3, &r2, &result);
   // The following should fail
   // EXPECT_EQ(result, 1); 

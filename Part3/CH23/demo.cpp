@@ -52,7 +52,7 @@ int main(int argc, char *argv[])
       pwd ++;
     }
   rational_init(&result, 1, 1);
-  // multiple until it is no longer valid, r1 = 1/3, r2 = 1/2
+  // multiply until it is no longer valid, r1 = 1/3, r2 = 1/2
   pwd = 2;
   while (result.valid)
     {

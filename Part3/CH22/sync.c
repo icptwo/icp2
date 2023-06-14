@@ -9,9 +9,9 @@ typedef struct
   int * intptr;            // pointer to shared memory
   pthread_mutex_t * mlock; // lock of the critical section
 } ThreadData;
-void * threadfunc(void *intarg)
+void * tfunc(void *tharg)
 {
-  ThreadData * td = (ThreadData *) intarg;
+  ThreadData * td = (ThreadData *) tharg;
   int * intptr = td -> intptr;
   pthread_mutex_t * mlock = td -> mlock;
   while (1)
@@ -46,15 +46,15 @@ int main (int argc, char *argv[])
   pthread_mutex_t mlock;               // create the lock
   pthread_mutex_init(& mlock, NULL);   // initialize the lock
   int val = 0;
-  ThreadData intarg;
-  intarg.intptr = & val;                  // share memory address 
-  intarg.mlock  = & mlock;                // all threads share the same lock
+  ThreadData tharg;
+  tharg.intptr = & val;           // share memory address 
+  tharg.mlock  = & mlock;         // all threads share the same lock
   pthread_t tid[NUMBER_THREAD];
   int rtv; // return value of pthread_create
   int ind;
   for (ind = 0; ind < NUMBER_THREAD; ind ++)
     {
-      rtv = pthread_create(& tid[ind], NULL, threadfunc, (void *) & intarg);
+      rtv = pthread_create(& tid[ind], NULL, tfunc, (void *) & tharg);
       if (rtv != 0)
 	{
 	  printf("pthread_create() fail %d\n", rtv);
