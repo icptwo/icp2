@@ -13,5 +13,5 @@ typedef struct
 bool readMaze(const char * filename, Maze * * maz);
 void printMaze(Maze * maz);
 void freeMaze(Maze * maz); 
-void findDistance(Maze * maz); // shortest distance of each reachable ell
+void findDistance(Maze * maz); // shortest distance of reachable cells
 #endif

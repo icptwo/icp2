@@ -75,16 +75,16 @@ bool readMaze(const char * filename, Maze ** maz)
 	      // if the value does not reduce, it is not reachable
 	      mz -> cells[indrow][indcol] = maxlength;
 	      break;
-	    case 's':
-	      mz -> cells[indrow][indcol] = 0; // distance from start is 0
+	    case 's': // starting point
+	      mz -> cells[indrow][indcol] = 0; // distance is 0
 	      mz -> startrow = indrow;
 	      mz -> startcol = indcol;
 	      break;
 	    case '\n':
 	      breakline = true;
 	      break;
-	    case 'b':
-	      mz -> cells[indrow][indcol] = -1; // -1 means unreachable
+	    case 'b': // brick
+	      mz -> cells[indrow][indcol] = -1; // unreachable
 	    }
 	  indcol ++;
 	}
@@ -129,7 +129,7 @@ static int nextDistance(Maze * maz, int row, int col, int dir)
     case WEST:  col --; break;
     case EAST:  col ++; break;
     }
-  // check invalid index
+  // check invalid index, -1 means cannot enter the cell
   if (row < 0) { return -1; }
   if (row >= (maz -> numrow)) { return -1; }
   if (col < 0) { return -1; }
