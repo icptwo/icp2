@@ -109,7 +109,7 @@ static void initSudoku(Sudoku * sud)
       for (int col = 0; col < 9; col ++)
 	{
 	  sud -> allowed[row][col][0] = false;
-	  for (int allow = 1; allow <= 9; allow ++)
+	  for (int allow = 1; allow <= 9; allow ++) // start from 1
 	    { sud -> allowed[row][col][allow] = true; }
 	}
     }
@@ -147,13 +147,13 @@ void printAllow(Sudoku * sud)
 	    }
 	  if (skip == false)
 	    {
-	      // printf("Allow at [%d][%c]: ", row + 1, col + 'A');
+	      printf("Allow at [%d][%c]: ", row + 1, col + 'A');
 	      for (allow = 1; allow <= 9; allow ++)
 		{
 		  if (sud -> allowed[row][col][allow] == true)
-		    { /* printf("%d ", allow); */ }
+		    { printf("%d ", allow); }
 		}
-	      // printf("\n");
+	      printf("\n");
 	    }
 	}
     }
@@ -221,7 +221,7 @@ static bool guessFillHelper(Sudoku * sud, int row, int col)
 	      sud -> cells[findrow][findcol] = val;
 	      if (guessFillHelper(sud, findrow, findcol) == true)
 		{ return true; }
-	      sud -> cells[findrow][findcol] = '0'; // reset
+	      sud -> cells[findrow][findcol] = '0'; // guess wrong, reset
 	    }
 	}
     }

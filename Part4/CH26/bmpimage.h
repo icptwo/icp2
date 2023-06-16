@@ -4,11 +4,11 @@
 #include "bmpheader.h"
 typedef struct
 {
-  BMP_Header header;
+  BMP_Header header; // not a pointer
   unsigned int data_size;
   unsigned int width;
   unsigned int height;
   unsigned int bytes_per_pixel; 
-  unsigned char * data;
+  unsigned char * data; // a pointer
 } BMP_Image;
 #endif

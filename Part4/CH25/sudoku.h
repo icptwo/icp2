@@ -6,7 +6,7 @@ typedef struct
 {
   int filled; // how many cells' values are final
   char cells[9][9]; // cells' values
-  bool allowed[9][9][10]; // what is allowed in each cell? [][][0] not used
+  bool allowed[9][9][10]; // allowed value in a cell; [][][0] not used
 } Sudoku;
 bool readSudoku(char * filename, Sudoku * sud);
 void printSudoku(Sudoku * sud);

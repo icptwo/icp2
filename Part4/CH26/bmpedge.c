@@ -37,7 +37,7 @@ void BMP_edge(BMP_Image *img, int thrshd)
       for (col = 1; col < width; col ++)
 	{
 	  int diff = twoDGray[row][col] - 
-	    twoDGray[row][col - 1];
+	    twoDGray[row][col - 1]; // horizontally adjacent pixels
 	  if (diff < 0) { diff = - diff; } // take the absolute value
 	  if (diff > thrshd) // an edge, set color to white
 	    {
