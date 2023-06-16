@@ -1,5 +1,5 @@
 // CH27:testgen.c
-// convert a test case from letter-occurrence pair to print the letters
+// convert a test case from letter-occurrence pairs to print the letters
 // for example, if input is a 23, this program prints a 23 times
 #include <stdio.h>
 #include <stdlib.h>

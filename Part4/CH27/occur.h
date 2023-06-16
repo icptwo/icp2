@@ -10,7 +10,7 @@ typedef struct
   int occur; // how many times does this ASCII value occurs
 } CharOccur;
 // count the occurrencies of the characters
-// return the number of characters 
+// return the total number of characters in the file
 // return 0 if cannot read from the file
 // occur is an array whose elements store the characters and occurrences
 int countOccur(char * filename, CharOccur * occur, int length);

@@ -7,7 +7,7 @@ int writeBit(FILE * fptr, unsigned char bit,
 // When * whichbit is zero, curbyte is reset
 // When * whichbit is 7, this byte is written to the file
 // The function returns 1 if a byte is written to the file
-// returns 0 if no byte is written, -1 if write and fails
+// returns 0 if no byte is written, -1 if fwrite fails
 {
   if ((* whichbit) == 0) { * curbyte = 0; } // reset the byte
   // shift the bit to the correct location
@@ -61,7 +61,7 @@ int readBit(FILE * fptr, unsigned char * bit,
   // shift the bit to the correct location
   unsigned char temp = (* curbyte) >> (7 - (* whichbit));
   temp = temp & 0X01; // get only 1 bit, ignore the others
-  * whichbit = ((* whichbit) + 1) % 8;   // increase by 1 for the next bit
+  * whichbit = ((* whichbit) + 1) % 8; // increase by 1 for the next bit
   * bit = temp;
   return 1;
 }
