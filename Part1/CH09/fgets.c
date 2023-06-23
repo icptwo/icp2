@@ -3,7 +3,7 @@
 #include <string.h>
 #include <stdlib.h>
 #define MAX_LINE_LENGTH 81
-// assume that the maximum length of each line is already know
+// assume that the maximum length of each line is 81
 int main(int argc, char * argv[])
 {
   FILE * fptr;

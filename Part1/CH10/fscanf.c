@@ -24,7 +24,7 @@ int main(int argc, char * * argv)
   int ch = fgetc(fptr);
   printf("ch = %d, '%c'\n", ch, ch);
   fseek(fptr, 0, SEEK_SET); // return to the beginning of the file
-  // call fscanf %d five times
+  // call fscanf %lf five times
   for (ind = 0; ind < 5; ind ++)
     {
       double val;
