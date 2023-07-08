@@ -1,14 +1,14 @@
 // CH23:testsquare.cpp
 #include <gtest/gtest.h>
 double square (const double val);
-TEST(SquarTest, PositiveNumbers)
+TEST(SquareTest, PositiveNumbers)
 { 
     EXPECT_EQ (324, square (18.0));
     EXPECT_EQ (625, square (25));
     EXPECT_EQ (49,  square (7.0));
     // EXPECT_EQ (52,  square (6.3)); // fail
 }
-TEST(SquarTest, NegativeNumbers)
+TEST(SquareTest, NegativeNumbers)
 { 
     EXPECT_EQ (64, square (-8.0));
     EXPECT_EQ (841, square (-29));
