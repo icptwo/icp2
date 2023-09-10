@@ -6,7 +6,7 @@ The book will be published by CRC Press early 2024.
 
 The book has four parts: (1) Storage: Memory and File, (2) Recursion, (3) Structures, (4) Applications.
 
-* Part 1
+* Part 1 Storage: Memory and File
   - Chapter 1 Program Execution
   - Chapter 2 Stack Memory
   - Chapter 3 Prevent, Detect, and Remove Bugs
@@ -19,7 +19,7 @@ The book has four parts: (1) Storage: Memory and File, (2) Recursion, (3) Struct
   - Chapter 10 Programming Problems Using File
   - Chapter 11 Array Index, Security, and Trends
   - Chapter 12 Version Control
-* Part 2
+* Part 2 Recursion
   - Chapter 13 Concept
   - Chapter 14 Recursive C Functions
   - Chapter 15 Integer Partition
@@ -37,4 +37,5 @@ The book has four parts: (1) Storage: Memory and File, (2) Recursion, (3) Struct
   - Chapter 25 Sudoku
   - Chapter 26 Image Processing
   - Chapter 27 Huffman Compression
+  
 Epilogue: The Computer Engineer as Tool-User by James C. Davis, PhD
