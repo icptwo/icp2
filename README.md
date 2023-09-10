@@ -17,12 +17,24 @@ The book has four parts: (1) Storage: Memory and File, (2) Recursion, (3) Struct
   - Chapter 8 Programming Problems Using Heap Memory
   - Chapter 9 Reading and Writing Files
   - Chapter 10 Programming Problems Using File
-storage security ch11security.tex:\chapter{Array Index, Security, and Trends}
-storage version ch12version.tex:\chapter{Version Control}
-recursion concept ch13concept.tex:\chapter{Concept}
-recursion function ch14function.tex:\chapter{Recursive C Functions}
-recursion partition ch15partition.tex:\chapter{Integer Partition}
-recursion problem ch16problem.tex:\chapter{Programming Problems Using Recursion}
-structure datatype ch17datatype.tex:\chapter{Programmer-Defined Data Types}
-structure problems ch18problem.tex:\chapter{Programming Problems Using Structure}
-structure list ch19list.tex:\chapter{Linked Lists}
+  - Chapter 11 Array Index, Security, and Trends
+  - Chapter 12 Version Control
+* Part 2
+  - Chapter 13 Concept
+  - Chapter 14 Recursive C Functions
+  - Chapter 15 Integer Partition
+  - Chapter 16 Programming Problems Using Recursion
+* Part 3 Structures 
+  - Chapter 17 Programmer-Defined Data Types
+  - Chapter 18 Programming Problems Using Structure
+  - Chapter 19 Linked Lists
+  - Chapter 20 Programming Problems Using Linked List
+  - Chapter 21 Binary Search Trees
+  - Chapter 22 Parallel Programming Using Threads
+  - Chapter 23 Unit Test
+* Part 4 Applications
+  - Chapter 24 Find the Exit of a Maze
+  - Chapter 25 Sudoku
+  - Chapter 26 Image Processing
+  - Chapter 27 Huffman Compression
+Epilogue: The Computer Engineer as Tool-User by James C. Davis, PhD
