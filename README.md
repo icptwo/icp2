@@ -1,9 +1,20 @@
-# Intermediate C Programming 2nd
+# Intermediate C Programming 2nd Edition
 Source Code for the Book
 with additional practice questions
 
 The book will be published by CRC Press early 2024.
 
+# Supplemental Materials
+
+
+We provide the source code for this book here at [github.com/icptwo/icp2](https://github.com/icptwo/icp2).
+You can clone the book code using `git clone https://github.com/icptwo/icp2`. `git` usage is covered in our book.
+
+We provide lecture materials in PowerPoint format at Figshare. See [doi.org/10.6084/m9.figshare.24955302](https://doi.org/10.6084/m9.figshare.24955302). 
+Please note that slides are still undergoing some revisions but are provided so instructors can get started with our book when published (expected February 2024). 
+
+
+# Book Contents
 The book has four parts: (1) Storage: Memory and File, (2) Recursion, (3) Structures, (4) Applications.
 
 * Part 1 Storage: Memory and File
