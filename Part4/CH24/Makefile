@@ -12,7 +12,7 @@ maze: $(OBJS)
 	$(GCC) $(TESTFALGS) -c $*.c 
 
 test: maze
-	for case in 1 2 3; do \
+	for case in 1 2 3 4 5 6; do \
 	./maze input$$case > output$$case; \
 	diff -w output$$case expected$$case; \
 	done
